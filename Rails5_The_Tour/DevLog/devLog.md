@@ -1,3 +1,6 @@
+```console
+
+
 $ rails new weblog  
 $ cd weblog/  
 $ rails generate scaffold post title:string body:text  
@@ -80,3 +83,6 @@ Total 3 (delta 0), reused 0 (delta 0)
 To git@github.com:highslater/10X.git
  * [new branch]      master -> master
 Branch master set up to track remote branch master from origin.
+
+
+```
