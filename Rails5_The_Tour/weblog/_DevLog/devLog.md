@@ -84,5 +84,44 @@ To git@github.com:highslater/10X.git
  * [new branch]      master -> master
 Branch master set up to track remote branch master from origin.
 
+$ rails generate resource comment post:references body:text  
+$ cat db/migrate/20161110010541_create_comments.rb
+class CreateComments < ActiveRecord::Migration[5.0]
+  def change
+    create_table :comments do |t|
+      t.references :post, foreign_key: true
+      t.text :body
+
+      t.timestamps
+    end
+  end
+end
+
+$ rails db:migrate
+== 20161110010541 CreateComments: migrating ===================================
+-- create_table(:comments)
+   -> 0.0086s
+== 20161110010541 CreateComments: migrated (0.0098s) ==========================
+
+$ rails routes
+           Prefix Verb   URI Pattern                                 Controller#Action
+    post_comments GET    /posts/:post_id/comments(.:format)          comments#index
+                  POST   /posts/:post_id/comments(.:format)          comments#create
+ new_post_comment GET    /posts/:post_id/comments/new(.:format)      comments#new
+edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format) comments#edit
+     post_comment GET    /posts/:post_id/comments/:id(.:format)      comments#show
+                  PATCH  /posts/:post_id/comments/:id(.:format)      comments#update
+                  PUT    /posts/:post_id/comments/:id(.:format)      comments#update
+                  DELETE /posts/:post_id/comments/:id(.:format)      comments#destroy
+            posts GET    /posts(.:format)                            posts#index
+                  POST   /posts(.:format)                            posts#create
+         new_post GET    /posts/new(.:format)                        posts#new
+        edit_post GET    /posts/:id/edit(.:format)                   posts#edit
+             post GET    /posts/:id(.:format)                        posts#show
+                  PATCH  /posts/:id(.:format)                        posts#update
+                  PUT    /posts/:id(.:format)                        posts#update
+                  DELETE /posts/:id(.:format)                        posts#destroy
 
 ```
+
+
