@@ -172,7 +172,142 @@ Bundle complete! 15 Gemfile dependencies, 62 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
          run  bundle exec spring binstub --all
 * bin/rake: spring inserted
-* bin/rails: spring inserted  
+* bin/rails: spring inserted 
+
+$ rails generate scaffold video title:string category:string description:text size:integer length:integer
+Running via Spring preloader in process 6072
+      invoke  active_record
+      create    db/migrate/20161110213356_create_videos.rb
+      create    app/models/video.rb
+      invoke    test_unit
+      create      test/models/video_test.rb
+      create      test/fixtures/videos.yml
+      invoke  resource_route
+       route    resources :videos
+      invoke  scaffold_controller
+      create    app/controllers/videos_controller.rb
+      invoke    erb
+      create      app/views/videos
+      create      app/views/videos/index.html.erb
+      create      app/views/videos/edit.html.erb
+      create      app/views/videos/show.html.erb
+      create      app/views/videos/new.html.erb
+      create      app/views/videos/_form.html.erb
+      invoke    test_unit
+      create      test/controllers/videos_controller_test.rb
+      invoke    helper
+      create      app/helpers/videos_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/videos/index.json.jbuilder
+      create      app/views/videos/show.json.jbuilder
+      create      app/views/videos/_video.json.jbuilder
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/videos.coffee
+      invoke    scss
+      create      app/assets/stylesheets/videos.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.scss
+
+
+ $ cat db/migrate/20161110213356_create_videos.rb
+class CreateVideos < ActiveRecord::Migration[5.0]
+  def change
+    create_table :videos do |t|
+      t.string :title
+      t.string :category
+      t.text :description
+      t.integer :size
+      t.integer :length
+
+      t.timestamps
+    end
+  end
+end
+
+$ rails db:migrate
+== 20161110213356 CreateVideos: migrating =====================================
+-- create_table(:videos)
+   -> 0.0025s
+== 20161110213356 CreateVideos: migrated (0.0027s) ============================
+
+$ cat db/schema.rb
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20161110213356) do
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "category"
+    t.text     "description"
+    t.integer  "size"
+    t.integer  "length"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+end
+
 ```
+
+```ruby  
+# videolog/app/models/video.rb
+class Video < ApplicationRecord
+  validates_presence_of :title, :category, :description, :size, :length
+end
+
+```
+
+```console
+Running via Spring preloader in process 9862
+Loading development environment (Rails 5.0.0.1)
+irb(main):001:0> Video.first
+  Video Load (0.3ms)  SELECT  "videos".* FROM "videos" ORDER BY "videos"."id" ASC LIMIT ?  [["LIMIT", 1]]
+=> #<Video id: 1, title: "White belt stretching", category: "White", description: "stretching", size: 300, length: 18, created_at: "2016-11-10 21:40:31", updated_at: "2016-11-10 21:40:31">
+irb(main):002:0> Video.all
+  Video Load (0.4ms)  SELECT "videos".* FROM "videos"
+=> #<ActiveRecord::Relation [#<Video id: 1, title: "White belt stretching", category: "White", description: "stretching", size: 300, length: 18, created_at: "2016-11-10 21:40:31", updated_at: "2016-11-10 21:40:31">, #<Video id: 2, title: "Created in console", category: "testing", description: "testing the insertion of data from the console", size: 1, length: 2, created_at: "2016-11-10 21:57:29", updated_at: "2016-11-10 21:57:29">]>
+irb(main):003:0> Video.where(created_at: Date.yesterday..Date.tomorrow).to_sql
+=> "SELECT \"videos\".* FROM \"videos\" WHERE (\"videos\".\"created_at\" BETWEEN '2016-11-09' AND '2016-11-11')"
+irb(main):012:0* Video.where(created_at: Date.yesterday..Date.tomorrow)
+  Video Load (0.6ms)  SELECT "videos".* FROM "videos" WHERE ("videos"."created_at" BETWEEN ? AND ?)  [["created_at", Wed, 09 Nov 2016], ["created_at", Fri, 11 Nov 2016]]
+=> #<ActiveRecord::Relation [#<Video id: 1, title: "White belt stretching", category: "White", description: "stretching", size: 300, length: 18, created_at: "2016-11-10 21:40:31", updated_at: "2016-11-10 21:40:31">, #<Video id: 2, title: "Created in console", category: "testing", description: "testing the insertion of data from the console", size: 1, length: 2, created_at: "2016-11-10 21:57:29", updated_at: "2016-11-10 21:57:29">]>
+
+irb(main):013:0> Video
+=> Video(id: integer, title: string, category: string, description: text, size: integer, length: integer, created_at: datetime, updated_at: datetime)
+irb(main):014:0> Video.create!(title: 'Hello from console', category: 'testing', description: 'testing console input', size: 1, length: 2)
+   (0.2ms)  begin transaction
+  SQL (0.7ms)  INSERT INTO "videos" ("title", "category", "description", "size", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "Hello from console"], ["category", "testing"], ["description", "testing console input"], ["size", 1], ["length", 2], ["created_at", 2016-11-10 23:01:45 UTC], ["updated_at", 2016-11-10 23:01:45 UTC]]
+   (115.8ms)  commit transaction
+=> #<Video id: 3, title: "Hello from console", category: "testing", description: "testing console input", size: 1, length: 2, created_at: "2016-11-10 23:01:45", updated_at: "2016-11-10 23:01:45">
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
 
 
