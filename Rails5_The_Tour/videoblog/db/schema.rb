@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110213356) do
+ActiveRecord::Schema.define(version: 20161110230955) do
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "video_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_questions_on_video_id"
+  end
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"

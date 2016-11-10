@@ -291,22 +291,162 @@ irb(main):014:0> Video.create!(title: 'Hello from console', category: 'testing',
   SQL (0.7ms)  INSERT INTO "videos" ("title", "category", "description", "size", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["title", "Hello from console"], ["category", "testing"], ["description", "testing console input"], ["size", 1], ["length", 2], ["created_at", 2016-11-10 23:01:45 UTC], ["updated_at", 2016-11-10 23:01:45 UTC]]
    (115.8ms)  commit transaction
 => #<Video id: 3, title: "Hello from console", category: "testing", description: "testing console input", size: 1, length: 2, created_at: "2016-11-10 23:01:45", updated_at: "2016-11-10 23:01:45">
-
-
-
-
-
-
-
-
-
 ```
 
 
+```console
+$ rails generate resource question video:references body:text
+Running via Spring preloader in process 10084
+      invoke  active_record
+      create    db/migrate/20161110230955_create_questions.rb
+      create    app/models/question.rb
+      invoke    test_unit
+      create      test/models/question_test.rb
+      create      test/fixtures/questions.yml
+      invoke  controller
+      create    app/controllers/questions_controller.rb
+      invoke    erb
+      create      app/views/questions
+      invoke    test_unit
+      create      test/controllers/questions_controller_test.rb
+      invoke    helper
+      create      app/helpers/questions_helper.rb
+      invoke      test_unit
+      invoke    assets
+      invoke      coffee
+      create        app/assets/javascripts/questions.coffee
+      invoke      scss
+      create        app/assets/stylesheets/questions.scss
+      invoke  resource_route
+       route    resources :questions
 
 
+$ cat db/migrate/20161110230955_create_questions.rb
+class CreateQuestions < ActiveRecord::Migration[5.0]
+  def change
+    create_table :questions do |t|
+      t.references :video, foreign_key: true
+      t.text :body
+
+      t.timestamps
+    end
+  end
+end
 
 
+$ rails db:migrate
+== 20161110230955 CreateQuestions: migrating ==================================
+-- create_table(:questions)
+   -> 0.0087s
+== 20161110230955 CreateQuestions: migrated (0.0089s) =========================
+
+$ cat db/schema.rb
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20161110230955) do
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "video_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_questions_on_video_id"
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "category"
+    t.text     "description"
+    t.integer  "size"
+    t.integer  "length"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+end
+
+```
+
+```ruby
+#videoblog/config/routes.rb
+Rails.application.routes.draw do
+  resources :videos do
+    resources :questions
+  end
+end
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+```
+
+```console
+$ rails routes
+             Prefix Verb   URI Pattern                                    Controller#Action
+    video_questions GET    /videos/:video_id/questions(.:format)          questions#index
+                    POST   /videos/:video_id/questions(.:format)          questions#create
+ new_video_question GET    /videos/:video_id/questions/new(.:format)      questions#new
+edit_video_question GET    /videos/:video_id/questions/:id/edit(.:format) questions#edit
+     video_question GET    /videos/:video_id/questions/:id(.:format)      questions#show
+                    PATCH  /videos/:video_id/questions/:id(.:format)      questions#update
+                    PUT    /videos/:video_id/questions/:id(.:format)      questions#update
+                    DELETE /videos/:video_id/questions/:id(.:format)      questions#destroy
+             videos GET    /videos(.:format)                              videos#index
+                    POST   /videos(.:format)                              videos#create
+          new_video GET    /videos/new(.:format)                          videos#new
+         edit_video GET    /videos/:id/edit(.:format)                     videos#edit
+              video GET    /videos/:id(.:format)                          videos#show
+                    PATCH  /videos/:id(.:format)                          videos#update
+                    PUT    /videos/:id(.:format)                          videos#update
+                    DELETE /videos/:id(.:format)                          videos#destroy
+
+```
+
+```ruby
+#app/models/question.rb
+class Question < ApplicationRecord
+  belongs_to :video
+end
+```
+
+```ruby
+# videolog/app/models/video.rb
+class Video < ApplicationRecord
+  has_many :questions
+  validates_presence_of :title, :category, :description, :size, :length
+end
+```
+
+```console
+Running via Spring preloader in process 13892
+Loading development environment (Rails 5.0.0.1)
+irb(main):001:0> Video.first
+  Video Load (0.4ms)  SELECT  "videos".* FROM "videos" ORDER BY "videos"."id" ASC LIMIT ?  [["LIMIT", 1]]
+=> #<Video id: 1, title: "White belt stretching", category: "White", description: "stretching", size: 300, length: 18, created_at: "2016-11-10 21:40:31", updated_at: "2016-11-10 21:40:31">
+irb(main):002:0> Video.first.questions
+  Video Load (0.3ms)  SELECT  "videos".* FROM "videos" ORDER BY "videos"."id" ASC LIMIT ?  [["LIMIT", 1]]
+  Question Load (0.3ms)  SELECT "questions".* FROM "questions" WHERE "questions"."video_id" = ?  [["video_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy []>
+irb(main):003:0> Video.first.questions.create! body: 'This is a question from the console'
+  Video Load (0.3ms)  SELECT  "videos".* FROM "videos" ORDER BY "videos"."id" ASC LIMIT ?  [["LIMIT", 1]]
+   (0.2ms)  begin transaction
+  SQL (0.5ms)  INSERT INTO "questions" ("video_id", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["video_id", 1], ["body", "This is a question from the console"], ["created_at", 2016-11-10 23:26:13 UTC], ["updated_at", 2016-11-10 23:26:13 UTC]]
+   (135.2ms)  commit transaction
+=> #<Question id: 1, video_id: 1, body: "This is a question from the console", created_at: "2016-11-10 23:26:13", updated_at: "2016-11-10 23:26:13">
+irb(main):004:0> Video.first.questions
+  Video Load (0.3ms)  SELECT  "videos".* FROM "videos" ORDER BY "videos"."id" ASC LIMIT ?  [["LIMIT", 1]]
+  Question Load (0.2ms)  SELECT "questions".* FROM "questions" WHERE "questions"."video_id" = ?  [["video_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Question id: 1, video_id: 1, body: "This is a question from the console", created_at: "2016-11-10 23:26:13", updated_at: "2016-11-10 23:26:13">]>
+
+```
 
 
 
