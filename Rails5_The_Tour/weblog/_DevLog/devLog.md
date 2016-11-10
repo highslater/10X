@@ -122,6 +122,19 @@ edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format) comments#ed
                   PUT    /posts/:id(.:format)                        posts#update
                   DELETE /posts/:id(.:format)                        posts#destroy
 
+
+$ rails generate mailer comments submitted  
+$ rails generate channel comments  
+
+
+
+
+
+
+
+
+
+
 ```
 
 
