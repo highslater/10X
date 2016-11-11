@@ -448,6 +448,33 @@ irb(main):004:0> Video.first.questions
 
 ```
 
+```html
+<!-- videoblog/app/views/questions/_new.html.erb -->
+<%= form_for([ @video, Question.new ], remote: true) do |form| %>
+  Your Comment:
+  <br>
+  <%= form.text_area :body, size:'50x20' %>
+  <br>
+  <%= form.submit %>
+<% end %>
+```
+
+
+```html
+<!-- videoblog/app/views/questions/_question.html.erb -->
+<%= question.body %> -- <%= question.created_at.to_s(:long) %>
+
+```
+
+
+```ruby
+
+```
+
+
+
+
+
 
 
 

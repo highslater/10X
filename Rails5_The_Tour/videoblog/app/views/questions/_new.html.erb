@@ -1,0 +1,8 @@
+<!-- videoblog/app/views/questions/_new.html.erb -->
+<%= form_for([ @video, Question.new ], remote: true) do |form| %>
+  Your Comment:
+  <br>
+  <%= form.text_area :body, size:'50x20' %>
+  <br>
+  <%= form.submit %>
+<% end %>

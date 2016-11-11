@@ -1,29 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @video.title %>
 </p>
-
 <p>
   <strong>Category:</strong>
   <%= @video.category %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @video.description %>
 </p>
-
 <p>
   <strong>Size:</strong>
   <%= @video.size %>
 </p>
-
 <p>
   <strong>Length:</strong>
   <%= @video.length %>
 </p>
-
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
+<br>
+<br>
+<h2>Questions</h2>
+<div id="questions">
+  <%= render @video.questions %>
+</div>
+<%= render 'questions/new', video: @video %>

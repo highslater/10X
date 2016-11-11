@@ -1,5 +1,6 @@
 #videoblog/config/routes.rb
 Rails.application.routes.draw do
+  root to: 'videos#index'
   resources :videos do
     resources :questions
   end
