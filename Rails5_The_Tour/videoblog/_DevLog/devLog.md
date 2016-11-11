@@ -462,7 +462,7 @@ irb(main):004:0> Video.first.questions
 
 ```erb
 <!-- videoblog/app/views/questions/_question.html.erb -->
-<%= question.body %> -- <%= question.created_at.to_s(:long) %>
+<p><%= question.body %> -- <%= question.created_at.to_s(:long) %></p>
 
 ```
 
