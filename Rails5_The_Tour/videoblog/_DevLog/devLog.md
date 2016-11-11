@@ -448,7 +448,7 @@ irb(main):004:0> Video.first.questions
 
 ```
 
-```html
+```erb
 <!-- videoblog/app/views/questions/_new.html.erb -->
 <%= form_for([ @video, Question.new ], remote: true) do |form| %>
   Your Comment:
@@ -460,7 +460,7 @@ irb(main):004:0> Video.first.questions
 ```
 
 
-```html
+```erb
 <!-- videoblog/app/views/questions/_question.html.erb -->
 <%= question.body %> -- <%= question.created_at.to_s(:long) %>
 
