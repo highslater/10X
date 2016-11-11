@@ -261,7 +261,7 @@ end
 
 ```
 
-```ruby  
+```rb 
 # videolog/app/models/video.rb
 class Video < ApplicationRecord
   validates_presence_of :title, :category, :description, :size, :length
@@ -377,7 +377,7 @@ end
 
 ```
 
-```ruby
+```rb
 #videoblog/config/routes.rb
 Rails.application.routes.draw do
   resources :videos do
@@ -410,14 +410,14 @@ edit_video_question GET    /videos/:video_id/questions/:id/edit(.:format) questi
 
 ```
 
-```ruby
+```rb
 #app/models/question.rb
 class Question < ApplicationRecord
   belongs_to :video
 end
 ```
 
-```ruby
+```rb
 # videolog/app/models/video.rb
 class Video < ApplicationRecord
   has_many :questions
