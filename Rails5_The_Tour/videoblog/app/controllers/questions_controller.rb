@@ -3,7 +3,9 @@ class QuestionsController < ApplicationController
   before_action :set_video
 
   def create
-    @video.questions.create!(questions_params)
+    question = @video.questions.create!(questions_params)
+    QuestionsMailer.submitted(question).deliver_later
+    QuestionsChannel.broadcast(question)
     redirect_to @video
   end
 

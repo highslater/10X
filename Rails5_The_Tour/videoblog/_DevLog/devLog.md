@@ -491,6 +491,118 @@ end
 ```
 
 
+```console
+$ rails generate mailer questions submitted
+Running via Spring preloader in process 1748
+      create  app/mailers/questions_mailer.rb
+      invoke  erb
+      create    app/views/questions_mailer
+      create    app/views/questions_mailer/submitted.text.erb
+      create    app/views/questions_mailer/submitted.html.erb
+      invoke  test_unit
+      create    test/mailers/questions_mailer_test.rb
+      create    test/mailers/previews/questions_mailer_preview.rb
+
+```
+
+
+```rb
+# videoblog/mailers/questions_mailer.rb
+class QuestionsMailer < ApplicationMailer
+
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.questions_mailer.submitted.subject
+  #
+  def submitted(question)
+    @question = question
+
+    mail to: "blog-ownwr@example.org", subject: 'New Comment'
+  end
+end
+```
+
+
+```rb
+#videoblog/app/controllers/questions_controller.rb
+class QuestionsController < ApplicationController
+  before_action :set_video
+
+  def create
+    question = @video.questions.create!(questions_params)
+    QuestionsMailer.submitted(question).deliver_later
+    redirect_to @video
+  end
+
+  private
+
+  def set_video
+    @video = Video.find(params[:video_id])
+  end
+
+  def questions_params
+    params.required(:question).permit(:body)
+  end
+
+end
+
+```
+
+```console
+$ rails generate channel questions
+Running via Spring preloader in process 25439
+      create  app/channels/questions_channel.rb
+   identical  app/assets/javascripts/cable.js
+      create  app/assets/javascripts/channels/questions.coffee
+
+```
+
+```rb  
+#videoblog/app/controllers/questions_controller.rb
+class QuestionsController < ApplicationController
+  before_action :set_video
+
+  def create
+    question = @video.questions.create!(questions_params)
+    QuestionsMailer.submitted(question).deliver_later
+    QuestionsChannel.broadcast(question)
+    redirect_to @video
+  end
+
+  private
+
+  def set_video
+    @video = Video.find(params[:video_id])
+  end
+
+  def questions_params
+    params.required(:question).permit(:body)
+  end
+
+end
+
+```
+
+```coffee
+# videoblog/app/assets/javascripts/channels/questions.coffee
+App.questions = App.cable.subscriptions.create "QuestionsChannel",
+  connected: ->
+    # Called when the subscription is ready for use on the server
+
+  disconnected: ->
+    # Called when the subscription has been terminated by the server
+
+  received: (data) ->
+    # Called when there's incoming data on the websocket for this channel
+    $('#questions').append data.question
+```
+
+
+
+
+
+
 
 
 
