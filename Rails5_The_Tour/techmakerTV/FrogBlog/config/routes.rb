@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :authors
   root to: 'blog/posts#index'
 
-  namespace :author do
-    resources :posts
+  namespace :authors do
+    resources :posts do
+      put 'publish' => 'posts#publish', on: :member
+      put 'unpublish' => 'posts#unpublish', on: :member
+    end
+
   end
 
   scope module: 'blog' do
