@@ -1,0 +1,23 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="/" class="navbar-brand">
+      Clog <span class="light">blog</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><%= link_to 'Blog', root_path, class: "nav-link #{yield(:blog_active)}" %></li>
+        <li class="nav-item"><%= link_to 'About', about_path, class: "nav-link #{yield(:about_active)}" %></li>
+        <li class="nav-item"><%= link_to 'Contact', contact_path, class: "nav-link #{yield(:contact_active)}" %></li>
+        <% if author_signed_in? %>
+          <li class="nav-item"><%= link_to 'My Posts', authors_posts_path, class: "nav-link #{yield(:author)}" %></li>
+          <li class="nav-item"><%= link_to 'LogOut', destroy_author_session_path, method: :delete, class: "nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'LogIn', new_author_session_path,  class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
