@@ -1,8 +1,10 @@
-highslater@mint64 ~/Desktop/10X/techmakerTV $ rails --version
+
+```console
+$ rails --version
 Rails 5.0.1
-highslater@mint64 ~/Desktop/10X/techmakerTV $ ruby --version
+$ ruby --version
 ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
-highslater@mint64 ~/Desktop/10X/techmakerTV $ rails new HogBlog
+$ rails new HogBlog
       create  
       create  README.md
       create  Rakefile
@@ -176,8 +178,11 @@ Use `bundle show [gemname]` to see where a bundled gem is installed.
          run  bundle exec spring binstub --all
 * bin/rake: spring inserted
 * bin/rails: spring inserted
-highslater@mint64 ~/Desktop/10X/techmakerTV $ cd HogBlog/
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ ls -hal
+```
+
+```console
+$ cd HogBlog/
+$ ls -hal
 total 76K
 drwxr-xr-x 12 highslater highslater 4.0K Jan 26 15:33 .
 drwxr-xr-x  6 highslater highslater 4.0K Jan 26 15:33 ..
@@ -197,9 +202,11 @@ drwxr-xr-x  2 highslater highslater 4.0K Jan 26 15:33 public
 drwxr-xr-x  8 highslater highslater 4.0K Jan 26 15:33 test
 drwxr-xr-x  3 highslater highslater 4.0K Jan 26 15:33 tmp
 drwxr-xr-x  3 highslater highslater 4.0K Jan 26 15:33 vendor
+```
 
 
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ rails server
+```console
+$ rails server
 => Booting Puma
 => Rails 5.0.1 application starting in development on http://localhost:3000
 => Run `rails server -h` for more startup options
@@ -215,15 +222,18 @@ Processing by Rails::WelcomeController#index as HTML
   Rendering /home/highslater/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/railties-5.0.1/lib/rails/templates/rails/welcome/index.html.erb
   Rendered /home/highslater/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/railties-5.0.1/lib/rails/templates/rails/welcome/index.html.erb (5.2ms)
 Completed 200 OK in 28ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+```
 
 Put image 1 here
 
 
 
-
+```ruby
 gem 'bootstrap', '~> 4.0.0.alpha6'
+```
 
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ bundle install
+```console
+$ bundle install
 Resolving dependencies...
 Using rake 12.0.0
 Using concurrent-ruby 1.0.4
@@ -290,6 +300,8 @@ Using web-console 3.4.0
 Using rails 5.0.1
 Using sass-rails 5.0.6
 Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
+```
+
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
@@ -315,8 +327,8 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 
 
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
-
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ bundle install
+```console
+$ bundle install
 Resolving dependencies...
 Using rake 12.0.0
 Using concurrent-ruby 1.0.4
@@ -384,14 +396,17 @@ Using web-console 3.4.0
 Using rails 5.0.1
 Using sass-rails 5.0.6
 Bundle complete! 17 Gemfile dependencies, 65 gems now installed.
+```
 
-
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ rails generate friendly_id
+```console
+$ rails generate friendly_id
 Running via Spring preloader in process 14992
 Expected string default value for '--jbuilder'; got true (boolean)
       create  db/migrate/20170126220012_create_friendly_id_slugs.rb
       create  config/initializers/friendly_id.rb
+```
 
+```ruby
 class CreateFriendlyIdSlugs < ActiveRecord::Migration
   def change
     create_table :friendly_id_slugs do |t|
@@ -407,9 +422,10 @@ class CreateFriendlyIdSlugs < ActiveRecord::Migration
     add_index :friendly_id_slugs, :sluggable_type
   end
 end
+```
 
-
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ rails generate scaffold post title:string body:text description:text slug:string:uniq
+```console
+$ rails generate scaffold post title:string body:text description:text slug:string:uniq
 Running via Spring preloader in process 15073
 Expected string default value for '--jbuilder'; got true (boolean)
       invoke  active_record
@@ -445,7 +461,9 @@ Expected string default value for '--jbuilder'; got true (boolean)
       create      app/assets/stylesheets/posts.scss
       invoke  scss
       create    app/assets/stylesheets/scaffolds.scss
+```
 
+```ruby
 class CreatePosts < ActiveRecord::Migration[5.0]
   def change
     create_table :posts do |t|
@@ -459,9 +477,10 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     add_index :posts, :slug, unique: true
   end
 end
+```
 
-
-highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ rails db:migrate
+```console
+$ rails db:migrate
 == 20170126220012 CreateFriendlyIdSlugs: migrating ============================
 -- create_table(:friendly_id_slugs, {})
    -> 0.0030s
@@ -482,7 +501,9 @@ highslater@mint64 ~/Desktop/10X/techmakerTV/HogBlog $ rails db:migrate
    -> 0.0017s
 == 20170126220228 CreatePosts: migrated (0.0049s) =============================
 
+```
 
+```ruby
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -491,14 +512,15 @@ class Post < ApplicationRecord
     title_changed?
   end
 end
+```
 
-
+```ruby
 Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-
+```
 
 put image_02.png here
 put image_03.png here
@@ -506,17 +528,17 @@ put image_04.png here
 put image_05.png here
 
 remove from form 
-
+```html
 <div class="field">
     <%= f.label :slug %>
     <%= f.text_field :slug %>
 </div>
-
+```
 
 , :slug
 
 put image_06.png here
-
+```html
 <% provide(:page_title, @post.title) %>
 <p id="notice"><%= notice %></p>
 <p>
@@ -578,4 +600,4 @@ put image_06.png here
 </table>
 <br>
 <%= link_to 'New Post', new_post_path %>
-
+```
