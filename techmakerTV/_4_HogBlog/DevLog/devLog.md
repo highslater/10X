@@ -302,7 +302,7 @@ Using sass-rails 5.0.6
 Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 ```
 
-
+```javascript
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
 
@@ -323,10 +323,12 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+```
 
-
-
+```ruby
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+```
+
 ```console
 $ bundle install
 Resolving dependencies...
@@ -559,18 +561,24 @@ put image_06.png here
 </p>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+```
 
+```html
 <% provide(:page_title, 'New Post') %>
 <h1>New Post</h1>
 <%= render 'form', post: @post %>
 <%= link_to 'Back', posts_path %>
+```
 
+```html
 <% provide(:page_title, "Edit #{@post.title}") %>
 <h1>Editing Post</h1>
 <%= render 'form', post: @post %>
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+```
 
+```html
 <% provide(:page_title, 'All Posts') %>
 <p id="notice"><%= notice %></p>
 <h1>Posts</h1>
