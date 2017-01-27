@@ -77,8 +77,8 @@ Use Ctrl-C to stop
 ```
 
 Put image 1 here
-
-Put link to bootstrap here
+  
+[twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem, "Get the Gem")
 
 ```rb
 ## /Gemfile
@@ -131,8 +131,7 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 ```
 
 
-Put link to bootstrap HERE  
-[twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem)
+[norman/friendly_id](https://github.com/norman/friendly_id, "Get the Gem")
 
 ```rb
 ## /Gemfile
