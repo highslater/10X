@@ -76,7 +76,8 @@ Use Ctrl-C to stop
 
 ```
 
-Success Page
+Success Page  
+
  ![Success Page] (./Images/image_01.png)
 
 [twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem, "Get the Gem")
@@ -253,10 +254,22 @@ Rails.application.routes.draw do
 end
 ```
 
-put image_02.png here
-put image_03.png here
-put image_04.png here
-put image_05.png here
+put image_02.png here  
+
+![Success Page] (./Images/image_02.png)  
+
+put image_03.png here  
+
+![Success Page] (./Images/image_03.png)  
+
+put image_04.png here  
+
+![Success Page] (./Images/image_04.png)  
+
+put image_05.png here  
+
+![Success Page] (./Images/image_05.png)  
+
 
 remove from form 
 ```html
