@@ -78,7 +78,9 @@ Use Ctrl-C to stop
 
 Put image 1 here
 
-```ruby
+Put link to bootstrap here
+
+```rb
 ## /Gemfile
 
 ## Added
@@ -128,7 +130,11 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 //= require_tree .
 ```
 
-```ruby
+
+Put link to bootstrap here 
+
+
+```rb
 ## /Gemfile
 
 ## Added
@@ -156,7 +162,7 @@ Expected string default value for '--jbuilder'; got true (boolean)
       create  config/initializers/friendly_id.rb
 ```
 
-```ruby
+```rb
 class CreateFriendlyIdSlugs < ActiveRecord::Migration
   def change
     create_table :friendly_id_slugs do |t|
@@ -188,7 +194,7 @@ Expected string default value for '--jbuilder'; got true (boolean)
       create    app/assets/stylesheets/scaffolds.scss
 ```
 
-```ruby
+```rb
 class CreatePosts < ActiveRecord::Migration[5.0]
   def change
     create_table :posts do |t|
@@ -228,7 +234,7 @@ $ rails db:migrate
 
 ```
 
-```ruby
+```rb
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -239,7 +245,7 @@ class Post < ApplicationRecord
 end
 ```
 
-```ruby
+```rb
 Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts
