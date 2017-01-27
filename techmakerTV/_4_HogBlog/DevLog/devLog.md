@@ -80,7 +80,7 @@ Success Page
 
  ![Success Page] (./Images/image_01.png)
 
-[twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem, "Get the Gem")
+[twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem "Get the Gem")
 
 ```rb
 ## /Gemfile
@@ -133,7 +133,7 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 ```
 
 
-[norman/friendly_id](https://github.com/norman/friendly_id, "Get the Gem")
+[norman/friendly_id](https://github.com/norman/friendly_id "Get the Gem")
 
 ```rb
 ## /Gemfile
