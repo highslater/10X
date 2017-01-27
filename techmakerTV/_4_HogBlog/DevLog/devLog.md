@@ -131,7 +131,7 @@ Bundle complete! 16 Gemfile dependencies, 64 gems now installed.
 ```
 
 
-Put link to bootstrap here 
+Put link to bootstrap HERE  
 [twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem)
 
 ```rb
