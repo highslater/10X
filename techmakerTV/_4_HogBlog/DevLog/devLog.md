@@ -254,21 +254,21 @@ Rails.application.routes.draw do
 end
 ```
 
-put image_02.png here  
+Posts Page
 
-![Success Page] (./Images/image_02.png)  
+![Posts Page] (./Images/image_02.png)  
 
-put image_03.png here  
+New Post Page  
 
-![Success Page] (./Images/image_03.png)  
+![New Post Page] (./Images/image_03.png)  
 
-put image_04.png here  
+My First Post Page
 
-![Success Page] (./Images/image_04.png)  
+![My First Post Page] (./Images/image_04.png)  
 
-put image_05.png here  
+Posts Page  
 
-![Success Page] (./Images/image_05.png)  
+![Posts Page] (./Images/image_05.png)  
 
 
 remove from form 
@@ -281,9 +281,9 @@ remove from form
 
 , :slug  
 
-image 6  
+Editing Post Page  
 
-![Success Page] (./Images/image_06.png)  
+![Editing Post Page] (./Images/image_06.png)  
 
 
 
