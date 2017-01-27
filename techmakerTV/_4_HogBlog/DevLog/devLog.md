@@ -279,9 +279,14 @@ remove from form
 </div>
 ```
 
-, :slug
+, :slug  
 
-put image_06.png here
+image 6  
+
+![Success Page] (./Images/image_06.png)  
+
+
+
 ```html
 <% provide(:page_title, @post.title) %>
 <p id="notice"><%= notice %></p>
