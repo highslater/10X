@@ -76,7 +76,7 @@ Use Ctrl-C to stop
 
 ```
 
-Put image 1 here
+Success Page
  ![Success Page] (./Images/image_01.png)
 
 [twbs/bootstrap-rubygem](https://github.com/twbs/bootstrap-rubygem, "Get the Gem")
