@@ -414,6 +414,7 @@ LAYOUT AND DESIGN
 
 ```html 
 <!-- app/views/layouts/_navbar.html.erb-->
+
 <!-- -->
 <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
   <!-- -->
