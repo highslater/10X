@@ -336,6 +336,8 @@ Editing Post Page
 ```
 
 ```html
+<!-- app/views/posts/new.html.erb -->
+
 <% provide(:page_title, 'New Post') %>
 <h1>New Post</h1>
 <%= render 'form', post: @post %>
