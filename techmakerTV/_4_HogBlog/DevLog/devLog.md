@@ -499,6 +499,11 @@ end
 ```
 
 ```html 
+<!-- app/views/pages/contact.html.erb -->
+<!-- app/views/pages/about.html.erb -->
+<!-- all blog sub-pages -->
+
+
 <% provide(:blog_active, 'active') %>
 <% provide(:about_active, 'active') %>
 <% provide(:contact_active, 'active') %>
