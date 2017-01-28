@@ -387,3 +387,26 @@ Editing Post Page
 <br>
 <%= link_to 'New Post', new_post_path %>
 ```
+
+
+START SECOND VIDEO HERE 
+LATOUT AND DESIGN
+
+```html
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:page_title) %> | HogBlog</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div class="container <%= controller_name %> <%= action_name %>">
+      <%= yield %>
+    </div>
+  </body>
+</html>
+```
