@@ -295,6 +295,7 @@ Editing Post Page
 
 ```html 
 <!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -310,6 +311,8 @@ Editing Post Page
 ```
 
 ```html
+<!-- app/views/posts/show.html.erb -->
+
 <% provide(:page_title, @post.title) %>
 <p id="notice"><%= notice %></p>
 <p>
