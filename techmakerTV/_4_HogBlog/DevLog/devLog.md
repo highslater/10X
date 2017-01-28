@@ -433,11 +433,11 @@ LAYOUT AND DESIGN
       </li>
       <!-- -->
       <li class="nav-item">
-        <%= link_to 'About', root_path, class: "nav-link #{yield(:about_active)}" %>
+        <%= link_to 'About', about_path, class: "nav-link #{yield(:about_active)}" %>
       </li>
       <!-- -->
       <li class="nav-item">
-        <%= link_to 'Contact', root_path, class: "nav-link #{yield(:contact_active)}" %>
+        <%= link_to 'Contact', contact_path, class: "nav-link #{yield(:contact_active)}" %>
       </li>
       <!-- -->
     </ul>
@@ -446,4 +446,24 @@ LAYOUT AND DESIGN
   <!-- -->
 </nav>
 <!-- -->
+```
+
+```rb 
+# config/routes.rb
+
+# The Rails router recognizes URLs and dispatches them to a controller's action.
+# It can also generate paths and URLs,
+# avoiding the need to hardcode strings in your views.
+
+Rails.application.routes.draw do
+
+  # get 'about' => 'pages#about', as: :about
+  get 'about', to: 'pages#about', as: 'about'
+  # get 'contact' => 'pages#contact', as: :contact
+  get 'contact', to: 'pages#contact', as: 'contact'
+
+  root to: 'posts#index'
+  resources :posts
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
 ```
