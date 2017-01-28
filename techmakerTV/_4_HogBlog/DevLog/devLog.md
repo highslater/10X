@@ -467,3 +467,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 ```
+
+```html  
+<!-- app/views/pages/contact.html.erb -->
+
+<h1>This Is The Contact Page</h1>
+```
+
+```html  
+<!-- app/views/pages/about.html.erb -->
+
+<h1>This Is The About Page</h1>
+```
