@@ -279,13 +279,35 @@ remove from form
 </div>
 ```
 
-, :slug  
+```rb
+# app/controllers/posts_controller.rb
+
+# Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:title, :body, :description)
+  end  
+```
+
 
 Editing Post Page  
 
 ![Editing Post Page] (./Images/image_06.png)  
 
-
+```html 
+<!-- app/views/layouts/application.html.erb -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:page_title) %> | HogBlog</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+```
 
 ```html
 <% provide(:page_title, @post.title) %>
