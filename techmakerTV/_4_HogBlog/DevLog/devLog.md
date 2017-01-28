@@ -500,11 +500,11 @@ end
 
 ```html 
 <!-- app/views/pages/contact.html.erb -->
-<!-- app/views/pages/about.html.erb -->
-<!-- all blog sub-pages -->
-
-
-<% provide(:blog_active, 'active') %>
-<% provide(:about_active, 'active') %>
 <% provide(:contact_active, 'active') %>
+
+<!-- app/views/pages/about.html.erb -->
+<% provide(:about_active, 'active') %>
+
+<!-- all blog sub-pages -->
+<% provide(:blog_active, 'active') %>
 ```
