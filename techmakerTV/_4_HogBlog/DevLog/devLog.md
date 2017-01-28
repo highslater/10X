@@ -355,6 +355,8 @@ Editing Post Page
 ```
 
 ```html
+<!-- app/views/posts/index.html.erb -->
+
 <% provide(:page_title, 'All Posts') %>
 <p id="notice"><%= notice %></p>
 <h1>Posts</h1>
