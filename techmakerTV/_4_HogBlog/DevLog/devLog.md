@@ -497,3 +497,7 @@ end
     }
 }
 ```
+
+<% provide(:blog_active, 'active') %>
+<% provide(:about_active, 'active') %>
+<% provide(:contact_active, 'active') %>
