@@ -496,30 +496,4 @@ end
         outline: none;
     }
 }
-
-.collapse-bg {
-    padding: 0 !important;
-    .card {
-        margin-bottom: 0;
-        border-radius: 0;
-        border: none;
-        .list-group-item {
-            padding: 0;
-            border-radius: 0 !important;
-            border-color: black;
-            a {
-                background-color: #1a1a1a;
-                color: #bdc3c7;
-                width: 100%;
-                height: 100%;
-                padding: 10px;
-                &:active {
-                    color: white;
-                    border-bottom: none;
-                }
-            }
-        }
-    }
-}
-
 ```
