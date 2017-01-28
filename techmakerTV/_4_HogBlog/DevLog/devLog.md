@@ -410,3 +410,38 @@ LAYOUT AND DESIGN
   </body>
 </html>
 ```
+
+
+```html 
+<!-- app/views/layouts/_navbar.html.erb-->
+<!-- -->
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+  <!-- -->
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- -->
+  <a class="navbar-brand" href="/">Hog<span class="light">Blog</span></a>
+  <!-- -->
+  <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+    <!-- -->
+    <ul class="navbar-nav ml-auto">
+      <!-- -->
+      <li class="nav-item">
+        <%= link_to 'Blog', root_path, class: "nav-link #{yield(:blog_active)}" %>
+      </li>
+      <!-- -->
+      <li class="nav-item">
+        <%= link_to 'About', root_path, class: "nav-link #{yield(:about_active)}" %>
+      </li>
+      <!-- -->
+      <li class="nav-item">
+        <%= link_to 'Contact', root_path, class: "nav-link #{yield(:contact_active)}" %>
+      </li>
+      <!-- -->
+    </ul>
+    <!-- -->
+  </div>
+  <!-- -->
+</nav>
+<!-- -->
+```
