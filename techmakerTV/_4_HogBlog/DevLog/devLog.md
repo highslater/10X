@@ -404,6 +404,7 @@ LAYOUT AND DESIGN
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <%= render 'layouts/navbar' %>
     <div class="container <%= controller_name %> <%= action_name %>">
       <%= yield %>
     </div>
