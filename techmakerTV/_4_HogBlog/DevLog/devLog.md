@@ -389,8 +389,8 @@ Editing Post Page
 ```
 
 
-START SECOND VIDEO HERE 
-LATOUT AND DESIGN
+START SECOND VIDEO HERE  
+LAYOUT AND DESIGN
 
 ```html
 <!-- app/views/layouts/application.html.erb -->
