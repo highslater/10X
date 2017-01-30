@@ -699,3 +699,27 @@ class PostsController < ApplicationController
   def show
   end
 ```
+
+23:00  
+
+```console  
+$ rails generate migration add_banner_image_url_to_posts banner_image_url:string
+Running via Spring preloader in process 27103
+Expected string default value for '--jbuilder'; got true (boolean)
+      invoke  active_record
+      create    db/migrate/20170130170919_add_banner_image_url_to_posts.rb
+      
+$ cat db/migrate/20170130170919_add_banner_image_url_to_posts.rb 
+class AddBannerImageUrlToPosts < ActiveRecord::Migration[5.0]
+  def change
+    add_column :posts, :banner_image_url, :string
+  end
+end
+
+$ rails db:migrate
+== 20170130170919 AddBannerImageUrlToPosts: migrating =========================
+-- add_column(:posts, :banner_image_url, :string)
+   -> 0.0064s
+== 20170130170919 AddBannerImageUrlToPosts: migrated (0.0066s) ================
+
+```
