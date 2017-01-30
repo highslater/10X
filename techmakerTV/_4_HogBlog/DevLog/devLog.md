@@ -508,3 +508,35 @@ end
 <!-- all blog sub-pages -->
 <% provide(:blog_active, 'active') %>
 ```
+
+13:00
+
+```html  
+<!-- app/views/posts/index.html.erb -->
+
+<% provide(:page_title, 'All Posts') %>
+<% provide(:blog_active, 'active') %>
+<div class="row">
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>
+```
+
+```html  
+<!-- app/views/posts/_post.html.erb -->
+
+<div class="col-sm-6 col-lg-4">
+  <div class="card">
+    <div class="card-topper" style='background-image: url(https://static.pexels.com/photos/63285/pig-alp-rona-furna-sow-63285.jpeg);'>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title"><%= link_to post.title, post %></h4>
+      <p class="published-date">Published Jan 14, 2016</p>
+      <p class="card-text"><%= truncate(post.description, length: 130) %></p>
+      <%= link_to "Read", post, class:'btn btn-read' %>
+    </div>
+  </div>
+</div>
+```
+
