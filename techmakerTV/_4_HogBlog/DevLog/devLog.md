@@ -790,3 +790,57 @@ end
   </div>
 </div>
 ```
+
+```rb  
+## app/models/post.rb
+
+class Post < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  scope :most_recent, -> {order(id: :desc)}
+
+  def should_generate_friendly_id?
+    title_changed?
+  end
+
+  def display_day_published
+    "Published #{created_at.strftime('%-b %-d %Y')}"
+  end
+end
+```
+
+```html  
+<!-- app/views/posts/_post.html.erb -->
+
+<div class="col-sm-6 col-lg-4">
+  <div class="card">
+    <div class="card-topper" style='background-image: url(<%= post.banner_image_url %>);'>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title"><%= link_to post.title, post %></h4>
+      <p class="published-date"><%= post.display_day_published %></p>
+      <p class="card-text"><%= truncate(post.description, length: 130) %></p>
+      <%= link_to "Read", post, class:'btn btn-read' %>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<!-- app/views/posts/show.html.erb -->
+
+<% provide(:page_title, @post.title) %>
+<% provide(:blog_active, 'active') %>
+<div class="row">
+  <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+    <div class="text-center">
+      <!-- Center aligned text on all viewport sizes -->
+      <h1><%= @post.title %></h1>
+      <p><%= @post.display_day_published %></p>
+    </div>
+    <div><%= @post.body %></div>
+  </div>
+</div>
+```
+

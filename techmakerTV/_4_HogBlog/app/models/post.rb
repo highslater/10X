@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def should_generate_friendly_id?
     title_changed?
   end
+
+  def display_day_published
+    "Published #{created_at.strftime('%-b %-d %Y')}"
+  end
 end
