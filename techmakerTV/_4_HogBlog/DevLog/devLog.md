@@ -540,3 +540,162 @@ end
 </div>
 ```
 
+```scss  
+/* app/assets/stylesheets/posts.scss */
+
+.posts.index {
+  .card {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #181818;
+    height: 400px;
+    margin-bottom: 20px;
+    .card-topper {
+      height:200px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-block {
+      padding: 10px;
+      .btn-read {
+        background-color: #e8e8e8;
+        font-weight: 300;
+        border-radius: 0;
+        color: black;
+        &:hover {
+          background-color: #d8d8d8;
+        }
+      }
+      .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        a {
+          color: black;
+          text-decoration: none;
+
+        }
+        &:hover {
+          font-size: 1.5rem;
+          margin-bottom: 0.25rem;
+          a {
+            color: black;
+          }
+        }
+      }
+      .published-date {
+        font-size: 0.8rem;
+        color: #787878;
+        font-weight: 300;
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+      }
+      .card-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.posts.edit, .posts.new {
+  .card {
+    .card-block {
+      background-color: gray; 
+    }
+    .card-title {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+    .list-group-item {
+      padding: 10px;
+      border-right: 0px;
+      border-left: 0px;
+      input[type='text'], textarea {
+        font-size: 14px;
+        background-color: gray;
+      }
+      textarea {
+        height: 172px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 34em) {
+  .posts.index.card {
+    height: 440px;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .posts.index.card {
+    height: 420px;
+  }
+}
+
+@media screen and (min-width: 75em) {
+  .posts.index.card {
+    height: 415px;
+  }
+}
+```
+
+```scss  
+/* app/assets/stylesheets/application.scss */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+@import "navbar";
+@import "posts";
+```
+
+```html  
+<!-- app/views/posts/show.html.erb -->
+
+<% provide(:page_title, @post.title) %>
+<% provide(:blog_active, 'active') %>
+<div class="row">
+  <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+    <div class="text-center">
+      <!-- Center aligned text on all viewport sizes -->
+      <h1><%= @post.title %></h1>
+      <p>Jan 14, 2016</p>
+    </div>
+    <div><%= @post.body %></div>
+  </div>
+</div>
+```
+
+```rb  
+## app/models/post.rb
+
+class Post < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  scope :most_recent, -> {order(id: :desc)}
+
+  def should_generate_friendly_id?
+    title_changed?
+  end
+end
+
+```
+
+```rb  
+# app/controllers/posts_controller.rb
+
+class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
+  # GET /posts
+  # GET /posts.json
+  def index
+    @posts = Post.most_recent
+  end
+
+  # GET /posts/1
+  # GET /posts/1.json
+  def show
+  end
+```
