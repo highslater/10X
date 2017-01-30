@@ -708,7 +708,7 @@ Running via Spring preloader in process 27103
 Expected string default value for '--jbuilder'; got true (boolean)
       invoke  active_record
       create    db/migrate/20170130170919_add_banner_image_url_to_posts.rb
-      
+
 $ cat db/migrate/20170130170919_add_banner_image_url_to_posts.rb 
 class AddBannerImageUrlToPosts < ActiveRecord::Migration[5.0]
   def change
@@ -723,3 +723,55 @@ $ rails db:migrate
 == 20170130170919 AddBannerImageUrlToPosts: migrated (0.0066s) ================
 
 ```
+
+```rb  
+# app/controllers/posts_controller.rb
+
+class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy] ...
+
+  ...
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:title, :body, :description, :banner_image_url)
+  end
+end
+
+```
+
+```rb  
+<!-- app/views/posts/_form.html.erb -->
+
+<%= form_for(post) do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :banner_image_url %>
+    <%= f.text_field :banner_image_url %>
+  </div>
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+```
+
