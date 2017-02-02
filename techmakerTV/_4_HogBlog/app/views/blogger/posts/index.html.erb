@@ -1,0 +1,15 @@
+<!-- app/views/posts/index.html.erb -->
+<% provide(:page_title, 'All Posts') %>
+<% provide(:blogger, 'active') %>
+<div class="row">
+  <%= link_to 'New Post', new_blogger_post_path, class: 'btn btn-primary btn-lg' %>
+</div>
+<br>
+<div class="row">
+  <table class="table table-striped">
+    <tr>
+      <th colspan="4">Title</th>
+    </tr>
+    <%= render @posts %>
+  </table>
+</div>
