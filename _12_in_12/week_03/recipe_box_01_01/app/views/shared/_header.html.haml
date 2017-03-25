@@ -1,0 +1,44 @@
+%nav.navbar.navbar-inverse.bg-inverse.fixed-top.navbar-toggleable-md
+  .container.navbar-nav
+    = link_to "Recipe Box", root_path, class:"nav-link navbar-brand"
+    - if user_signed_in?
+      %ul.navbar-nav.ml-auto
+        %li.nav-item= link_to 'New Recipe', new_recipe_path, class:"nav-link"
+        %li.nav-item= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:"nav-link"
+    - else
+      %ul.navbar-nav.ml-auto
+        %li.nav-item= link_to 'Sign Up', new_user_registration_path, class:"nav-link"
+        %li.nav-item= link_to 'Sign in', new_user_session_path, class:"nav-link"
+    %end
+
+
+
+/ %nav.navbar.navbar-default
+/   .containter-fluid
+/     .navbar-header
+/       %button.navbar-toggle.collapsed{ type: :button, 'data-toggle' => :collapse, 'data-target' => "#bs-example-navbar-collapse-1" }
+/         %span.sr-only Toggle Navigation
+/         %span.icon-bar
+/         %span.icon-bar
+/         %span.icon-bar
+/       = link_to 'Somewhere', root_path, class: 'navbar-brand'
+
+/     / Navbar content
+/     .collapse.navbar-collapse#bs-example-navbar-collapse-1
+/       %ul.nav.navbar-nav.navbar-right
+
+/         / Sample links
+/         %li.active= link_to 'Link 1', '#'
+/         %li.active= link_to 'Link 2', '#'
+/         %li.active= link_to 'Link 3', '#'
+
+/         / Sample dropdown
+/         %li.dropdown
+/           = link_to '#', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'class' => 'dropdown-toggle' do
+/             Dropdown
+/             %span.caret
+/           %ul.dropdown-menu{ role: :menu }
+/             %li= link_to 'Dropdown Link 1', '#'
+/             %li= link_to 'Dropdown Link 2', '#'
+/             %li.divider
+/             %li= link_to 'Dropdown Link 3', '#'

@@ -1,0 +1,26 @@
+/ - @recipes.each do |recipe|
+/   .container.mb-2
+/     =link_to recipe do
+/       .d-inline-block.mr-3=(image_tag(recipe.image.url(:thumb)))
+/       %h2.d-inline-block=recipe.title
+
+/ %br/
+
+/ = link_to "New", new_recipe_path, class: "btn btn-primary mb-5"
+
+- @recipes.each_slice(3) do |recipes|
+  .row.mb-5
+    -recipes.each do |recipe|
+      .col-md-4
+        .recipe
+          .image_wrapper
+            =link_to recipe do
+              .d-inline-block.mr-3=(image_tag(recipe.image.url(:small)))
+              %h3.d-inline-block=recipe.title
+
+= link_to "New Recipe", new_recipe_path, class: "btn btn-outline-primary mt-5"
+
+
+/ % Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore iste ea porro minus. Aspernatur enim earum itaque voluptas dicta, porro nemo est impedit quaerat unde quidem iure nobis magnam error minima consequuntur in et reiciendis iste rerum quibusdam deserunt quis voluptates. Voluptas omnis delectus inventore, ea, quaerat ipsum quod.
+
+/ % Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis deleniti dolorum veniam, quis repellendus ad non repellat impedit! Aut ea dicta nemo possimus iste mollitia maxime dolor excepturi illum omnis aperiam veniam sint fugiat eius, blanditiis tenetur quisquam numquam sit perferendis vero! Minima quaerat ipsam, necessitatibus mollitia molestias repudiandae eaque, eum adipisci aliquam quod fugit. Ea aliquid repudiandae dolores harum dicta accusantium unde sit quaerat nihil, ut doloribus accusamus voluptas hic, voluptates deleniti iusto repellat reprehenderit rerum. Incidunt totam sit necessitatibus saepe modi qui eveniet vitae sapiente cumque dolores assumenda voluptatem, laudantium, provident voluptatum culpa aut sequi ut aliquid harum cum quis, earum quaerat vero eos hic. Facilis, iusto explicabo cupiditate beatae amet corporis odio iste fuga minima commodi repellendus magnam eaque esse sapiente nam aliquid nihil? Nesciunt, quisquam cum explicabo quia aperiam consequatur ducimus quidem inventore quibusdam voluptate nam itaque est quo rerum vitae nemo expedita, a commodi beatae? Architecto impedit voluptatibus temporibus repellat ipsum magnam optio quis incidunt pariatur labore itaque nostrum quos soluta officia, sapiente non assumenda similique consequuntur eligendi culpa rerum dignissimos! Suscipit fuga libero ad vero nulla tenetur error vel atque dignissimos explicabo neque repellendus maiores cupiditate, sed nemo minus blanditiis ea. Accusamus placeat, consequuntur.

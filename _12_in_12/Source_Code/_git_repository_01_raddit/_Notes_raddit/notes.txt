@@ -1,0 +1,136 @@
+NoMethodError in Devise::RegistrationsController#new
+undefined method `for' for #<Devise::ParameterSanitizer:0x007f72a50dde40>
+
+Extracted source (around line #10):
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:account_update) << :name
+  end
+
+The following method in the Application Controller for handling the Devise strong parameters for the "name" field added to the User model should be updated as follows:
+
+def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+end"
+
+Hi! if you are getting the next error when trying to destroy a comment: undefined method `each' for nil:NilClass In /app/views/comments/index.html.erb 
+on this line: <% @comments.each do |comment| %>
+
+Try adding these lines to comments_controllers.rb 
+def index
+ @comments = Comment.all
+end
+
+Make sure you have 'redirect_to :back' in comments_controller.rb:
+def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end﻿
+
+source: http://stackoverflow.com/questions/20774180/undefined-method-each-for-nilnilclass-why
+
+
+You should do  <% if current_user && link.user == current_user %> instead of <% if link.user == current_user %>
+Because: When a user posts a link, then deletes his account the user_id of the link is "nil". Keep in mind that the id of the current_user is always nil when not logged in. So every "guest" will see the Edit and Destroy button then.﻿
+
+Thanks for the awesome tutorial, but I found an issue: when I'm logged in I can still edit links that aren't created by myself, I've tried to hide the edit button with if @link.user == current_user, but someone can still access the edit page by link/number/edit. Is there any way to prevent this? Thanks again for your free courses!﻿
+Reply 1     
+ Mackenzie Child 
+Mackenzie Child1 year ago
++Marek Zelinka Yeah, give this video (from my podcast course) a watch: https://youtu.be/R6rInMDVLVs﻿
+
+
+Thanks! great video, wish i knew about these a while ago. Can you explain the content_tag a little more at 12:17? It's wrapping the flash message in a div with the class alert alert-success (or -error)? and bootstrap will style according to success (green) or error (red)? how did you know to use this?﻿
+Reply 1     
+Hide replies 
+ Mackenzie Child 
+Mackenzie Child1 year ago
++Alison Tague Thanks Alison :) Yep, the content_tag wraps the flash with a div with the class of alert alert-success... You can read more about the content_tag here: http://apidock.com/rails/ActionView/Helpers/TagHelper/content_tag﻿
+Reply 1     
+ Alison Tague 
+Alison Tague1 year ago
+thanks!!﻿
+Reply     
+ 645524pasto 
+645524pasto1 year ago
++Alison Tague  http://getbootstrap.com/components/#alerts﻿
+Reply   
+
+
+Artemka Rocks1 year ago (edited)
+undefined method `name' for nil:NilClass  (http://screencloud.net/v/DmkH)
+after edit the name of current_user at the "Account" menu and redirect to the index page (at index page we have only id user)
+http://stackoverflow.com/questions/35573040/bug-undefined-method-name-for-nilnilclass-from-how-to-build-a-reddit-by-m
+
+what code should wrote to link_controller to find user by id ?﻿
+Show less
+Reply     
+ aerobicsparadise 
+aerobicsparadise11 months ago
++Artemka Rocks  I'm getting the same error.. but just trying to delete the user. The odd thing is doing a rake db:reset and reboot the server will give a "successful account deletion" message. of course try to make and delete another account will result in the same error again. Did you ever figure out the answer ?﻿
+Reply     
+ Artemka Rocks 
+Artemka Rocks11 months ago
++aerobicsparadise  not yet﻿
+Reply   
+
+Newbie question: I presume all `before_filter` (old syntax) should really be `before_action` (new syntax)? in video 26:39 we have a mix of both old and new syntax. Shouldn't it be cleaner to just stick to the new syntax? (It confused me at first as I thought they were doing different things. Then a google / stackoverflow search revealed they both meant the same thing. (the devise github uses `before_action` instead of `before_filter`. I guess both are working in Rails 4.x - apparently `before_filter` is getting dropped in Rails 5.x? (http://stackoverflow.com/questions/16519828/rails-4-before-filter-vs-before-action#16519841)﻿
+
+
+in this application, account update function doesn't work, and deletes the user. i followed your tutorial and my raddit app's user update function doesn't work either. i don't understand why. it must be about your views. i changed back devise views to default and it works.
+
+Method button_to generates a form, and since there is a mess with divs in "registrations/edit.html.erb", we get a form inside another form.
+As result it sends a POST request with 2 _method params (put and delete), and Rails thinks that we want to delete the user.
+
+f anybody is interested, the final edit.html.erb that ended up actually updating rather than deleting for me was
+
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <div class="form-inputs">
+
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", :autofocus => true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control", :autofocus => true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+            <%= f.password_field :password, class: "form-control", :autocomplete => "off" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+            <%= f.password_field :current_password, class: "form-control" %>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<div class="panel-footer">
+
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default" %></p>
+
+</div>

@@ -1,0 +1,88 @@
+source 'https://rubygems.org'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'rails', '~> 5.0.2'
+gem 'sqlite3'
+gem 'puma', '~> 3.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'jquery-rails'
+gem 'turbolinks', '~> 5'
+# gem 'jquery-turbolinks'
+gem 'jbuilder', '~> 2.5'
+
+# Added
+
+## Bootstrap Gem
+### The most popular HTML, CSS, and JavaScript framework for developing
+### responsive, mobile first projects on the web.
+gem 'bootstrap', '~> 4.0.0.alpha6'
+## /Bootstrap Gem
+
+## Haml Gem
+### Haml (HTML Abstraction Markup Language) is a layer on top of HTML or XML
+### that's designed to express the structure of documents in a non-repetitive,
+### elegant, and easy way by using indentation rather than closing tags and
+### allowing Ruby to be embedded with ease. It was originally envisioned as a
+### plugin for Ruby on Rails, but it can function as a stand-alone templating
+### engine.
+gem 'haml', '~> 4.0', '>= 4.0.7'
+## /Haml Gem
+
+## Simple_Form Gem
+### Forms made easy for Rails! It's tied to a simple DSL,
+### with no opinion on markup.
+gem 'simple_form', '~> 3.4'
+### Be sure to have a copy of the Bootstrap stylesheet available on your
+### application, you can get it on http://getbootstrap.com/.
+### Inside your views, use the 'simple_form_for' with one of the Bootstrap form
+### classes, '.form-horizontal' or '.form-inline', as the following:
+### = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+## /Simple_Form Gem
+
+## Devise
+### Flexible authentication solution for Rails with Warden.
+gem 'devise', '~> 4.2'
+## /Devise
+
+## PaperClip Gem
+### Easy upload management for ActiveRecord
+gem 'paperclip', '~> 5.1'
+## /PaperClip Gem
+
+## Masonry-Rails Gem
+### Masonry will rock your world!
+# gem 'masonry-rails', '~> 0.2.4'
+# //= require masonry/jquery.masonry
+# *= require 'masonry/transitions'
+## /Masonry-Rails Gem
+
+## Acts_as_votable Gem
+### Rails gem to allowing records to be votable
+gem 'acts_as_votable', '~> 0.10.0'
+## /Acts_as_votable Gem
+
+## bootstrap-glyphicons
+### bootstrap glyphicons scss
+gem 'bootstrap-glyphicons', '~> 0.0.1'
+## /bootstrap-glyphicons
+
+# /Added
+
+group :development, :test do
+  gem 'byebug', platform: :mri
+end
+
+group :development do
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,0 +1,15 @@
+/ Devise Gem
+
+/ Some setup you must do manually if you haven't yet:
+/ 3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+
+/ For example:
+/ <p class="notice"><%= notice %></p>
+/ <p class="alert"><%= alert %></p>
+
+/ /Devise Gem
+
+
+.container-fluid
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: "alert alert-info"

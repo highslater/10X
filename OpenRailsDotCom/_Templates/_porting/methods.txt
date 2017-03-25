@@ -1,0 +1,91 @@
+1.)
+Copy the template into the public/ folder in your generated application.
+Create a theme folder in the public folder
+Copy bootstrap template into the theme folder
+Putting the file in the public folder allows other team members to access the files through the repository you create on github, and gives you easy access to the files while adding them to the asset pipeline.
+
+2.)
+Selectively copy contents from the <head> of the bootstrap index.html to layout/application.html.erb
+Copy the <head> content from the index.html file from the bootstrap template.
+Paste into app/assets/view/layout/application.html.erb
+see https://github.com/styleguide/ruby for more info about requires
+Leave out any css files or js files included in the head of the template index.html
+
+3.)
+Move css files that are linked in the <head> to app/assets/stylesheets/application.css in your asset pipeline.
+Grab all the <link rel=”stylesheet” href=…> for css within the index.html of the template and make them required in the application.css.scss.
+You are basically creating link tags with your requires by adding *= require to application.css . If you are requiring everything individually you don’t need *=require tree.
+
+Example:
+Change Bootstrap index.html css links:
+<link rel=”stylesheet” href=”css/bootstrap.css”>
+<link rel=”stylesheet” href=”css/font-awesome.min.css”>
+<link rel=”stylesheet” href=”css/animate.min.css”>
+To Rails app require link:
+*= require bootstrap
+*= require animate.min
+*= require vendors/sweetalert
+****** it is important to stick with either the css *=require or sass @import syntax or you will mess up your app. In this case we are using css not sass ******
+see https://github.com/styleguide/ruby for more on *=requires and the ruby style guide
+
+4.) 
+Copy css files from the bootstrap template
+Copy css files from the template and paste them into your app/assets/stylesheets folder within the asset pipeline.
+
+5.) 
+Make javascript links required in application.js
+This step is similar to the css step: take the <script> links and make them required in the application.js. <script> links might be hiding at the bottom of the index.html template, near the </body> tag.
+Example:
+Change Bootstrap file, Index.html:
+<script src=”js/modernizr.js”></script>
+To Rails 4 file, Application.js:
+//= require modernizr
+
+6.) 
+Copy javascript files
+Copy js files from the template and paste them into your app/assets/javascript folder within the asset pipeline.
+If you have javascript nested in <script> tags in your bootstrap index.html copy and paste it into app/assets/javascripts/application.js file under the requires but above the //= require tree.
+You can copy these files by dragging and dropping them where you want or you can use the cp command in terminal. For example: If I wanted to copy my modernizr.js file from my template to my app, the terminal command would look like:
+$ cp public/theme/Static_Full_Version/js/modernizr.js app/assets/javascripts/
+First you specify the file path, then indicate where you would like to paste it within the asset pipeline, separated by a space.
+
+7.)
+Copy images
+Copy images from your bootstrap template into app/assets/images
+ 
+8.) 
+
+Make a theme partial and copy/paste the <body> from bootstrap index.html file into new partial
+Make a new partial in the /view/layouts/_your_partial_name
+render your partial in your application.html.erb
+Example: <%= render ‘layouts/your_partial_name’ %>
+Copy the contents from the bootstrap index.html into your partial
+We make a theme partial for the html because we don’t want to alter the generated html that is already working, we can do whatever we want in the partial then we can render it in the application.html.
+
+9.) 
+Fix the image paths by changing image tag to image_path using embedded ruby.
+Note, image tags are not always located in your html, so be sure to search css files. If you have images in your css they will look like:
+background-image: url(“../img/icon-account.svg”);
+You will want to change the url to its respective path:
+background: image-url(“theme/icon-account.svg”);
+
+
+10.)
+
+Font Awesome
+If you still have broken images at this point then you may be missing font images. Most bootstrap templates use font-awesome. Search your bootstrap template for font-awesome files, their likely located in the font file.
+If your bootstrap template uses a CDN, located in the <head>, you have the choice of implementing font awesome in your rails app through the following 3 ways:
+Copy the CDN into your rails app. This retrieves the font awesome images from an online source.
+Use the font-awesome gem to access font images.
+Add the font awesome files into the font folder and then specify the font path with the following line of code:
+<%= font_path(‘fontawesome-webfont.eot’) %>:
+
+11.) Dissect theme partial to select what you want in your application.
+You can now keep or delete whatever you want from the partial. Move the parts you want to keep from the theme partial into either the application.html.erb file directly or into new partials where appropriate (eg navigation). Delete the theme partial once it is empty and remove the render for that partial from application.html.erb
+
+12.)
+Final Thoughts
+Do things incrementally
+Commit as you go
+Get good at using the project search in your editor
+Regexps makes changing many lines way faster than doing them one at a time

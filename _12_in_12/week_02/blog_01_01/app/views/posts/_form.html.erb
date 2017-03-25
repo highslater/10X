@@ -1,0 +1,24 @@
+<%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div id="errors">
+      <h2>NOPE! <small style="color: red"><%= pluralize(@post.errors.count, "error") %></small></h2>
+      <h3>  The following prevented this post from saving.</h3>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li style="color: red"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %>
+    <br>
+    <%= f.text_area :body %>
+  </p>
+  <%= f.submit %>
+<% end %>

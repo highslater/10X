@@ -1,0 +1,29 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ 
+/* 
+
+In order to avoid the override of your application style with the Active Admin one,
+you can do one of these things:
+
+1.) You can properly move the generated file active_admin.scss from app/assets/stylesheets
+    to vendor/assets/stylesheets.
+
+2.) You can remove all require_tree commands from your root level css files,
+    where the active_admin.scss is in the tree.
+
+*/

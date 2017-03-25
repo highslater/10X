@@ -1,0 +1,19 @@
+#pins.transitions-enabled
+  - @pins.each do |pin|
+    .box.card
+      .card-header.clearfix
+        %p.float-left
+          %span.glyphicon.glyphicon-heart
+          = pin.get_upvotes.size
+        %h4.float-right.text-muted
+          = pin.title
+      .card-img-top
+        = link_to (image_tag pin.image.url), pin
+      .card-block
+        .card-title
+          %h2= link_to pin.title, pin
+        %p.card-subtitle.mb-2.text-muted
+          =pin.user.email
+        %p.card-text= pin.description
+      %p.card-footer.mb-0.text-muted.text-left= "Submitted: #{time_ago_in_words pin.created_at} ago."
+

@@ -1,0 +1,33 @@
+<div class="container">
+  <% @links.each do |link| %>
+    <div class="d-flex justify-content-center">
+      <div class="link w-75">
+        <h2>
+          <%= link_to link.title, link, class:"" %>
+          <br>
+          <!-- Act as Votable -->
+          <span class="badge badge-pill badge-primary"><%= link.get_upvotes.size - link.get_downvotes.size %></span>
+          <span class="badge badge-pill badge-info p-1"><%= link.get_upvotes.size %></span>
+          <span class="badge badge-pill badge-warning p-1"><%= link.get_downvotes.size %></span>
+          <!-- Act as Votable -->
+          <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> ago, by <%= link.user.name %></small>
+          <br>
+          <!-- Act as Votable -->
+          <div class="btn-group">
+            <a href="<%= link.url %>" class="btn btn-outline-primary btn-sm">Visit Link</a>
+            <%= link_to like_link_path(link), method: :put, class:"btn btn-outline-info btn-sm" do %>
+              <span class="glyphicon glyphicon-chevron-up"></span> Upvote
+                <%= link.get_upvotes.size %>
+            <% end %>
+            <%= link_to dislike_link_path(link), method: :put, class:"btn btn-outline-info btn-sm" do %>
+              <span class="glyphicon glyphicon-chevron-down"></span> Downvote
+                <%= link.get_downvotes.size %>
+            <% end %>
+          </div>
+          <!-- Act as Votable -->
+        </h2>
+        <br>
+      </div>
+    </div>
+  <% end %>
+</div>

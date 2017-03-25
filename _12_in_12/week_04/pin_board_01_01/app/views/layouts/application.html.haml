@@ -1,0 +1,13 @@
+!!! 5
+%html
+%head
+  %title PinBoard
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' # reload
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' #reload
+%body
+
+  = render 'shared/header'
+  = render 'shared/alerts'
+  .container
+    = yield

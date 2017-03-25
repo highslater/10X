@@ -7,6 +7,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :authors
   root to: 'blog/posts#index'
 
   namespace :blogger do

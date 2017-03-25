@@ -1,0 +1,6 @@
+<% provide(:link_title, 'Submit Link') %>
+<!-- <h1>New Link</h1> -->
+<%= render 'form', link: @link %>
+<div class="d-flex justify-content-center">
+  <%= link_to 'Back', links_path, class:"btn btn-md btn-outline-info m-1" %>
+</div>

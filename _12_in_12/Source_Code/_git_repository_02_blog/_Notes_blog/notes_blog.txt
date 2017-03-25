@@ -1,0 +1,2 @@
+Erase ruby version in Gemfile
+$ bundle install --without production

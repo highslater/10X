@@ -1,0 +1,88 @@
+<!-- Header -->
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= image_tag "profile.png", class: "img-responsive" %>
+        <div class="intro-text">
+          <span class="name">Start Bootstrap</span>
+          <hr class="star-light">
+          <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- /Header -->
+<!--  -->
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Portfolio</h2>
+        <hr class="star-primary">
+      </div>
+    </div>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-sm-4 portfolio-item">
+          <%= link_to post_path(post) do %>
+            <%= image_tag post.image, class: 'img-responsive' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- /Portfolio Grid Section -->
+<!--  -->
+<!-- About Section -->
+<section class="success" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>About</h2>
+        <hr class="star-light">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur porro provident debitis, sequi temporibus accusamus ducimus molestiae sint nemo ea necessitatibus voluptates, ullam odio mollitia cumque id, eos. Ipsa voluptatum similique sint delectus ea reiciendis deleniti facere quam repellat eaque architecto consectetur amet cupiditate animi in, aperiam mollitia aspernatur quia?</p>
+      </div>
+      <div class="col-lg-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut vel, reiciendis libero architecto ipsum molestiae, error illum perspiciatis quisquam eos fugit impedit. Minima nihil magnam ullam expedita molestias porro, harum, laudantium deserunt facilis pariatur earum, eum officia voluptatum praesentium vel aliquid ea consectetur eligendi.</p>
+      </div>
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <a href="#" class="btn btn-lg btn-outline">
+          <i class="fa fa-download"></i>Download Theme
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /About Section -->
+<!--  -->
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2><%= mail_to "highslater@hotmail.com", "Contact Me", subject: "Hi, Please include your name and email address" %>
+        </h2>
+        <br>
+        <hr class="star-primary">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Contact Section -->
+<!--  -->
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+  <a href="#page-top" class="btn btn-primary">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+<!-- /Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<!--  -->

@@ -1,0 +1,125 @@
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+ @import "bootstrap";
+ @import "grays";
+h1 {
+    font-size: i
+}
+
+ body {
+ 	background-color: $gray5
+ }
+ .banner {
+    height: 400px;
+    max-width: 700px;
+    background-color: #2a2a2a;
+    margin: 40px auto 40px auto;
+    display: flex;
+ }
+ .call-outs-container {
+ 	max-width: 1200px;
+ 	background-color: $gray0;
+ 	margin: 40px auto 0 auto;
+ }
+ .call-out {
+	padding: 20px;
+    box-sizing: border-box;
+	margin-bottom: 20px;
+	flex-basis: 30%;
+ }
+ .call-out:nth-child(1) {background-color: #c0dbe2;}
+ .call-out:nth-child(2) {background-color: #cdf1c3;}
+ .call-out:nth-child(3) {background-color: #ccb9da;}
+
+@media (min-width: 900px) {
+    .call-outs-container {
+        display: flex;
+        justify-content:space-between;
+    }
+}
+
+.center-me {
+    color: #ffffff;
+    font-size: 50px;
+    margin: auto;
+}
+ .container {
+ 	background-color: $gray0;
+ 	width: 50%;
+ 	margin-bottom: 50px;
+ }
+ .column-layout {
+ 	max-width: 1200px;
+ 	background-color: $gray0;
+ 	margin: 40px auto 0 auto;
+ 	line-height: 1.65;
+ 	padding: 20px 50px;
+ 	display: flex;
+ }
+ .equal-height-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+ }
+ .first {
+    background-color: #ffffff;
+    padding: 20px;
+    flex: 2;
+ }
+ .fixed-size-container {
+    max-width: 1200px;
+    background-color: $gray0;
+    margin: 40px auto 0 auto;
+    display: flex;
+    justify-content:space-around;
+    padding: 30px 0px;
+    align-items: center;
+    flex-wrap: wrap;
+ }
+ .fixed-size {
+    width: 150px;
+    height: 100px;
+    background-color: #990b47;
+    color: #ffffff;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    margin-bottom: 20px;
+ }
+ .form-row {
+ 	padding: 10px 0;
+ 	display: flex;
+ }
+ .form-row label {
+ 	padding-right: 10px;
+ }
+ .form-row input {
+ 	flex: 1;
+ }
+ .main-column {
+ 	flex: 3;
+ 	order: 2;
+ }
+ .second {
+    background-color: yellow;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+ }
+ .second-a {
+    background-color: #c0dbe2;
+    flex: 1;
+ }
+ .second-b {
+    background-color: #cdf1c3;
+    flex: 2;
+ } 
+ .sidebar-one {
+ 	flex: 1;
+ 	order:1;
+ }
+ .sidebar-two {
+ 	flex: 1;
+ 	order: 3;
+ }
+

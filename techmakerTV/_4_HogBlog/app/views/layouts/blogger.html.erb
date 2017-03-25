@@ -7,9 +7,19 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--  tinyMCE  -->
+    <!-- ?apiKey=xpktg6x5r98fruy78cb734mgmxq57ksu266hfu2bsqs8125v -->
+    <!--     <script src="http://cloud.tinymce.com/stable/tinymce.min.js"></script>
+     -->    <!--  /tinyMCE  -->
   </head>
   <body>
     <%= render 'layouts/navbar' %>
+    <!--  flash messages from devise #3 -->
+    <% if notice || alert %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <!-- / flash messages from devise #3 -->
     <div class="container <%= controller_name %> <%= action_name %>">
       <%= yield %>
     </div>

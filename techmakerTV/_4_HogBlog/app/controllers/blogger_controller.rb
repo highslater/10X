@@ -1,3 +1,3 @@
-class BloggerController < ActionController::Base
-  protect_from_forgery with: :exception
+class BloggerController < ApplicationController
+  before_action :authenticate_author! # || authenticate_admin! #(try this)
 end

@@ -1,0 +1,14 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+
+jQuery ->
+    $("input[name='page[title]']").on("keyup", showCharacterCount)
+    $("input[name='page[title]']").trigger("keyup")
+
+    $("input[name='page[body]']").on("keyup", showCharacterCount)
+    $("input[name='page[body]']").trigger("keyup")
+
+showCharacterCount = (e) ->
+    $("[data-behavior='character-count']").text("#{$(e.target).val().length} characters")

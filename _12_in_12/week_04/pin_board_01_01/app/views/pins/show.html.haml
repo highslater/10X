@@ -1,0 +1,55 @@
+#pin_show.row
+  .col-md-8.offset-md-2
+
+    .card
+      .card-header.py-2.px-3
+
+        .d-flex.align-content-end.align-items-center   
+          %h4.mr-auto.mb-0.text-muted
+            %span.glyphicon.glyphicon-heart
+            = @pin.get_upvotes.size                
+          %h2.mb-0= @pin.title
+
+      ////////////////////////////////////////////////
+      /////
+      ///// Another way using clearfix
+      ///// .card-header.clearfix.p-3
+      /////   %h4.float-left.mb-0
+      /////     %span.glyphicon.glyphicon-heart
+      /////     = @pin.get_upvotes.size
+      /////   %h2.float-right.text-muted.mb-0
+      /////     = @pin.title
+      /////
+      ////////////////////////////////////////////////
+
+      .card-img-top.pin_image
+        = image_tag @pin.image.url
+      .card-block
+        %h1.m-0
+          = @pin.title
+        %p.description.mb-5
+          = @pin.description
+        %p.mb-5
+          ="Submitted by: #{@pin.user.email}"
+      .card-footer
+        .row
+          .col-md-6
+            %p.user
+              Submitted by:
+              = @pin.user.email
+            %p.text-muted
+              = time_ago_in_words @pin.created_at
+              ago.
+          .col-md-6
+            .container.text-right
+              =link_to like_pin_path(@pin), method: :PUT, class: "btn btn-outline-danger mt-2" do
+                %span.glyphicon.glyphicon-heart
+                = @pin.get_upvotes.size
+              - if user_signed_in?
+                =link_to "EDIT", edit_pin_path, class: "btn btn-outline-primary mt-2"
+                =link_to "DELETE", pin_path, method: :DELETE, data: { confirm: "Are You Sure" },class: "btn btn-outline-primary mt-2"
+        
+
+
+        / %h4.float-right.text-muted
+        /   = @pin.title

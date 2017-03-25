@@ -1,0 +1,60 @@
+.main-content
+
+  %hr/
+
+  .row#recipe_top
+
+    .col-md-4
+      = image_tag @recipe.image.url(:medium, class: "recipe_image")
+      
+    .col-md-8.mt-3
+      #recipe_info
+        %h1
+          = @recipe.title
+        %p.description
+          = @recipe.description
+        %p
+          Submitted by
+          = @recipe.user.email
+
+  %hr/
+
+  .row
+
+    .col-md-6
+      #ingredients
+        %h2 Ingredients
+        %hr/
+        %ul
+          -@recipe.ingredients.each do |ingredient|
+            %li= ingredient.name
+  
+    .col-md-6
+      #directions
+        %h2 Directions
+        %hr/
+        %ul 
+          -@recipe.directions.each do |direction|
+            %li= direction.step
+
+  %hr/
+
+  .row
+
+    .col-md-12
+      = link_to "Back", root_path, class: "btn btn-primary"
+      - if user_signed_in?
+        = link_to "New", new_recipe_path, class: "btn btn-primary"
+        = link_to "Edit", edit_recipe_path, class: "btn btn-primary"
+        = link_to "Delete", recipe_path, method: :DELETE, data: {confirm: "Are You Sure ?"}, class: "btn btn-primary"
+
+  %hr/
+
+
+
+
+
+
+
+
+
