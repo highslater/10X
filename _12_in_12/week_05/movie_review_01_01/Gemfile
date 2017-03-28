@@ -22,7 +22,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 ## /Devise Gem
 
-
+## Paperclip Gem
+### thoughtbot Easy upload management for ActiveRecord
+gem 'paperclip', '~> 5.1'
+## /Paperclip Gem
 
 
 # /Added

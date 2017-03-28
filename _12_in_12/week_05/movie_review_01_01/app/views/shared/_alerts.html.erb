@@ -9,5 +9,9 @@ For example:
 
 -->
 <% flash.each do |name, msg| %>
-  <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% if name == "alert" %>
+    <%= content_tag(:div, msg, class: "alert alert-danger", style: "color: red") %>
+  <% elsif name == "notice" %>
+    <%= content_tag(:div, msg, class: "alert alert-success", style: "color: green") %>
+  <% end %>
 <% end %>
