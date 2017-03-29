@@ -1,0 +1,20 @@
+<% if params[:controller] == 'movies' && params[:action] == 'index' %>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">
+        Your Favorite Movies Reviewed
+      </h1>
+      <p class="lead">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora placeat fuga maxime eaque aut vero, quibusdam nulla aliquam, magnam nostrum, recusandae repudiandae illo. Iusto, voluptates!
+      </p>
+      <hr class="mt-4 mb-5">
+      <p class="lead mb-0 ml-5">
+        <%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
+<% elsif params[:controller] == 'movies' && params[:action] == 'show' %>
+  <div class="container">
+    <p class=""><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-outline-info" %></p>
+  </div>
+<% end %>
