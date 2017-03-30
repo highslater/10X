@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # /Devise Gem
 
   resources :movies
+  resources :reviews
 end
 =begin
 
@@ -39,6 +40,14 @@ cancel_user_registration GET    /users/cancel(.:format)        devise/registrati
                          PATCH  /movies/:id(.:format)          movies#update
                          PUT    /movies/:id(.:format)          movies#update
                          DELETE /movies/:id(.:format)          movies#destroy
-                         
+                 reviews GET    /reviews(.:format)             reviews#index
+                         POST   /reviews(.:format)             reviews#create
+              new_review GET    /reviews/new(.:format)         reviews#new
+             edit_review GET    /reviews/:id/edit(.:format)    reviews#edit
+                  review GET    /reviews/:id(.:format)         reviews#show
+                         PATCH  /reviews/:id(.:format)         reviews#update
+                         PUT    /reviews/:id(.:format)         reviews#update
+                         DELETE /reviews/:id(.:format)         reviews#destroy
+
 
 =end

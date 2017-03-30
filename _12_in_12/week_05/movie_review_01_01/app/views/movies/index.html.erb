@@ -1,6 +1,6 @@
 <div class="row">
   <% @movies.each do |movie| %>
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-3 mb-3">
       <div class="img-thumbnail">
         <%= link_to (image_tag movie.image.url(:medium), class: 'img-fluid'), movie %>
       </div>
