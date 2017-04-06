@@ -1,0 +1,9 @@
+.container
+  %h1= @job.title
+  %p= @job.description
+  %p= @job.company
+  %p= @job.url
+
+  = link_to "Home", root_path, class: "btn btn-outline-primary"
+  = link_to "Edit", edit_job_path(@job), class: "btn btn-outline-primary"
+  = link_to "Delete", job_path(@job), method: :DELETE, class: "btn btn-outline-danger", data: {confirm: "Are you sure ?"}

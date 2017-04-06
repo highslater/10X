@@ -1,0 +1,16 @@
+.container.text-center
+  %hr.mt-3
+  %h1.p-2.bg-danger.text-white JOBS
+  %hr.my-3.mx-5
+  %h3.p-1.mt-1.bg-primary{:style => "color: white"} Board
+  %hr
+
+.container
+  - @jobs.each do |job|
+    %br/
+    %h4.mb-0= link_to job.title, job_path(job)
+    %p.lead.mb-0.ml-2= job.description
+    %p= job.company
+  %br/
+  = link_to "New Job", new_job_path, class: "btn btn-outline-primary"
+    
