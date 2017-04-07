@@ -9,8 +9,10 @@
   - @jobs.each do |job|
     %br/
     %h4.mb-0= link_to job.title, job_path(job)
+    %p.mb-0.ml-2= Category.find(job.category_id).name #make this a helper
     %p.lead.mb-0.ml-2= job.description
     %p= job.company
+
   %br/
   = link_to "New Job", new_job_path, class: "btn btn-outline-primary"
     
