@@ -1,0 +1,11 @@
+%nav.navbar.navbar-toggleable.navbar-light.bg-faded
+  .container
+    .navbar-brand RoR Jobs
+        
+    %ul.nav.navbar-nav
+      %li.nav-item= link_to "All Jobs", root_path, class: "nav-link" 
+      - Category.all.each do |cat|
+        %li.nav-item= link_to cat.name, jobs_path(cat: cat.id), class: "nav-link"
+
+    %ul.nav.navbar-nav.ml-auto
+      %li.nav-item= link_to "New Job", new_job_path, class: "nav-link"

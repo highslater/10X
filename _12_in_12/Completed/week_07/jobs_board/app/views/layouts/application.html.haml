@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title RoR Jobs
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
+
+
+  
+  %body
+    = render 'shared/navbar'
+    .container.p-3
+      .col-md-6.offset-md-3
+        = yield

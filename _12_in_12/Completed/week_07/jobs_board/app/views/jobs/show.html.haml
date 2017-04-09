@@ -1,0 +1,13 @@
+#jobs
+
+  .job
+    %h2= @job.title
+    %p= @job.description
+    %p= @job.company
+    
+    =link_to "Apply For Job", @job.url, class: "btn btn-outline-secondary"
+
+  #links
+    = link_to "Home", root_path, class: "btn btn-outline-secondary"
+    = link_to "Edit", edit_job_path(@job), class: "btn btn-outline-secondary"
+    = link_to "Delete", job_path(@job), method: :DELETE, class: "btn btn-outline-secondary", data: {confirm: "Are you sure ?"}
