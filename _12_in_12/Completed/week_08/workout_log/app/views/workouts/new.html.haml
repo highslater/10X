@@ -1,0 +1,10 @@
+%h1 New Workout
+= render 'form'
+=link_to "Cancel", root_path,
+    data: {confirm: 'Go Back to Home Page ?',
+      swal: { text: "Go There ?",
+      type: 'question',
+      confirm_button_text: "Go There !",
+      cancel_button_text: "Stay Here !",
+      timer: 5000,
+      }}

@@ -1,0 +1,27 @@
+#index_workouts
+  -@workouts.each do |workout|
+    %h2= link_to workout.date.strftime("%A - %B %d,  %Y"), workout_path(workout)
+    %h3
+      %span 
+        Workout: 
+      = workout.workout
+
+    = link_to 'Delete', workout, method: :delete,
+      data: {confirm: 'Really ?',
+        swal: {text: "Delete This Workout ?",
+        type: 'warning',
+        confirm_button_text: "Yuppers !",
+        cancel_button_text: "Nope !",
+        timer: 5000,
+        }}
+
+    |
+
+    = link_to 'SHOW', workout,
+      data: {confirm: 'Show This Workout ?',
+        swal: { text: "Yes, Go There ?",
+        type: 'question',
+        confirm_button_text: "Go There !",
+        cancel_button_text: "Stay Here !",
+        timer: 5000,
+        }}

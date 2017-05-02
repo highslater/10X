@@ -2,41 +2,43 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-Job.create(
+# Creates 100 Jobs
+jobs = []
+[
+  {c: 'FaceBook', u: 'https://www.facebook.com'},
+  {c: 'Twitter', u: 'https://twitter.com'},
+  {c: 'GitHub', u: 'https://github.com'},
+  {c: 'Google', u: 'https://www.google.com'},
+  {c: 'DuoLingo', u: 'https://www.duolingo.com'},
+].each do |h1|
   [
-    {
-      title: 'Full Stack Web Developer', description: 'Senior Level',
-      company: 'Twitter', category_id: 1, url: 'https://twitter.com'
-    },
-    {
-      title: 'Full Stack Web Developer', description: 'Junior Level',
-      company: 'Twitter', category_id: 2, url: 'https://twitter.com'
-    },
-    {
-      title: 'Front End Web Developer', description: 'Senior Level',
-      company: 'FaceBook', category_id: 3, url: 'https://www.facebook.com/'
-    },
-    {
-      title: 'Front End Web Developer', description: 'Junior Level',
-      company: 'FaceBook', category_id: 4, url: 'https://www.facebook.com/'
-    },
-  ]
-)
+    {t: 'Full Stack Web Developer', d: 'Senior Level' },
+    {t: 'Web Developer Intern', d:  'Entry Level'},
+    {t: 'Front End Web Developer', d:  'Junior Level'},
+    {t: 'Dev Ops Engineer', d:  'Mid Level'},
+    {t: 'Web Design Intern', d:  'Intern Level'},
+  ].each do |h2|
+    [
+      4,3,2,1
+    ].each do |cat|
 
+      jobs.push(
+        title: h2[:t],
+        description: h2[:d],
+        category_id: cat,
+        company: h1[:c],
+        url: h1[:u]
+      )
 
-Category.create(
-  [
-    {
-      name: 'Full Time'
-    },
-    {
-      name: 'Part Time'
-    },
-    {
-      name: 'FreeLance'
-    },
-    {
-      name: 'Consulting'
-    },
-  ]
-)
+    end
+  end
+end
+
+jobs.shuffle.each do |job|
+  Job.find_or_create_by(job)
+end
+
+# Creates 4 Categories
+['Full Time', 'Part Time', 'FreeLance', 'Consulting'].each do |category|
+  Category.find_or_create_by(name: category)
+end

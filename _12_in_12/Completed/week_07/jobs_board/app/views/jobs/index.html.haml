@@ -3,8 +3,9 @@
     .job
       %br/
       %h2= link_to job.title, job_path(job)
-      %p.mb-0.ml-2= Category.find(job.category_id).name #make this a helper
-      %p.lead.mb-0.ml-2= job.description
-      %p= job.company
+      %p.mb-0.ml-3
+        %span= Category.find(job.category_id).name
+        = job.description
+      %p.lead.mb-0= job.company
 
   

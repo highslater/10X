@@ -1,0 +1,40 @@
+#workout
+  %p= @workout.date
+  %p= @workout.workout
+  %p= @workout.mood
+  %p= @workout.length
+
+#exercises
+  %h2 Exercises
+  =render @workout.exercises
+  %h3 Add an Exercise
+  =render 'exercises/form'
+
+  = link_to 'Back', root_path,
+    data: {confirm: 'Go Home ?',
+      swal: { text: "Go There ?",
+      type: 'question',
+      confirm_button_text: "Go There !",
+      cancel_button_text: "Stay Here !",
+      timer: 5000,
+      }}
+  |
+
+  = link_to 'Edit', edit_workout_path(@workout),
+    data: {confirm: 'Edit this workout ?',
+      swal: { text: "Go There ?",
+      type: 'question',
+      confirm_button_text: "Go There !",
+      cancel_button_text: "Stay Here !",
+      timer: 5000,
+      }}
+  |
+
+  = link_to 'Delete', @workout, method: :delete,
+    data: {confirm: 'Really ?',
+      swal: {text: "Delete This Workout ?",
+      type: 'warning',
+      confirm_button_text: "Yuppers !",
+      cancel_button_text: "Nope !",
+      timer: 5000,
+      }}

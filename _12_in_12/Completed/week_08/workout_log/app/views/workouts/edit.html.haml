@@ -1,0 +1,12 @@
+%h1 Edit Workout
+
+= render 'form'
+
+= link_to 'Cancel', workout_path(@workout),
+    data: {confirm: 'Cancel Editing ?',
+      swal: { text: "Go back to workout ?",
+      type: 'question',
+      confirm_button_text: "Go !",
+      cancel_button_text: "Stay !",
+      timer: 5000,
+      }}
