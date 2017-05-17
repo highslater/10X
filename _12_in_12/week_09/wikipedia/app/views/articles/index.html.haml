@@ -1,0 +1,27 @@
+- if user_signed_in?
+  = link_to 'New Article', new_article_path, class: "btn btn-lg btn-block btn-outline-primary mt-5 bg-faded"
+- else
+  = link_to 'Sign-In',  new_user_session_path, class: "btn btn-lg btn-block btn-outline-primary mt-5 bg-faded"
+
+- @articles.each do |article|
+
+  .container.mt-5.bordered.rounded.p-2
+
+    %h2.text-primary.bg-faded.p-4
+      = article.title
+
+    %p.small.ml-1.my-0.text-muted
+      Category: 
+      = category_name(article)
+
+    %p.small.ml-2.my-0.text-muted
+      Published: 
+      = article.created_at.strftime('%b %d %Y')
+
+    %p.small.ml-2.mt-0.text-muted
+      By:
+      = user_email(article)
+    .bg-faded.px-3.pt-3.pb-1.m-5
+      %p.blockquote.m-0
+        = truncate(article.content, { length: 200 })
+        %footer.blockquote-footer.text-right.mr-5 source

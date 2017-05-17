@@ -1,0 +1,33 @@
+.container
+  = simple_form_for(@article, html: { class: 'form-horizontal' }) do |form|
+
+    .form-group.row
+      .col-10.offset-1
+        = form.collection_select :category_id, Category.all, :id, :name, {prompt: "Choose a Category"}
+
+    .form-group.row
+      .col-10.offset-1
+        = form.input :title, input_html: { type: 'text', class: 'form-control', placeholder: "Title" }
+
+    .form-group.row
+      .col-10.offset-1
+        = form.input :content, input_html: { type: 'text', class: 'form-control', placeholder: "Content", rows: 12 }
+
+      .col-5.offset-1.my-5
+        = form.button :submit, "Create the Article", class: "btn btn-lg btn-outline-success"
+        
+      .col-5.d-flex.justify-content-end.my-5
+        = link_to 'Clear', new_article_path, class: "btn btn-lg btn-outline-warning"
+
+
+/ ===============================================================================
+
+/   Be sure to have a copy of the Bootstrap stylesheet available on your
+/   application, you can get it on http://getbootstrap.com/.
+
+/   Inside your views, use the 'simple_form_for' with one of the Bootstrap form
+/   classes, '.form-horizontal' or '.form-inline', as the following:
+
+/     = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+
+/ ===============================================================================

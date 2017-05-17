@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+article:
+  title: valid article
+  body: <%= 'X' *200 %>
+
+article_without_title:
+  title:
+  body: <%= 'X' *200 %>
+
+article_without_body:
+  title: article without body
+  body:
+
+article_with_short_body:
+  title: article with short body
+  body: <%= 'X' *199 %>
+
+article_with_long_body:
+  title: article with long body
+  body: <%= 'X' * 501 %>
