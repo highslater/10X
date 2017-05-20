@@ -1,0 +1,7 @@
+<div class="container mt-5 pt-4 pb-5 px-5 center bg-warning text-white" id="debug_params">
+  <h4>Debugging Information</h4>
+  <hr>
+  <div class="py-4 bg-faded">
+    <%= debug(params) if Rails.env.development? %>
+  </div>
+</div>
