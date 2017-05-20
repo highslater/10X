@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampleApp</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= render 'shared/rails_default' %>
+    <%= render 'shared/shim' %>
   </head>
-
   <body>
-    <%= yield %>
+    <%= render 'shared/navbar' %>
+    <div class="container main_content">
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>
