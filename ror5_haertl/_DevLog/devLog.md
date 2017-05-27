@@ -69,7 +69,7 @@ password_digest: "$2a$10$S88PPuUtHqinfaSP6Ipv5.yLVQmB1mjA1x6uzQMwENTBiOiue4yAm"
 
 
 ```
->>  User.find_by(id: cookies.signed[:user_id])
+>>  user = User.find_by(id: cookies.signed[:user_id])
 => #<User id: 2, name: "jason", email: "highslater@hotmail.com", created_at: "2017-05-24 17:30:40", updated_at: "2017-05-27 20:16:07", password_digest: "$2a$10$Dx66wgfalTw6j1MfP21LHe7J.1L1Fwp72/sDWi2V3Sp...", remember_digest: "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3...">
 >>  remember_digest = User.find_by(id: cookies.signed[:user_id]).remember_digest
 => "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3d0p7jRmWf6"
@@ -77,7 +77,9 @@ password_digest: "$2a$10$S88PPuUtHqinfaSP6Ipv5.yLVQmB1mjA1x6uzQMwENTBiOiue4yAm"
 => "Op1RtnrwKWHCzbKATwTRKg"
 >>  BCrypt::Password.new(remember_digest).is_password?(remember_token)
 => true
->>   
+>>  user.authenticated?(remember_token)
+=> true
+>>     
 
 ```
 
