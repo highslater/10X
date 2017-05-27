@@ -71,28 +71,10 @@ password_digest: "$2a$10$S88PPuUtHqinfaSP6Ipv5.yLVQmB1mjA1x6uzQMwENTBiOiue4yAm"
 ```
 >>  User.find_by(id: cookies.signed[:user_id])
 => #<User id: 2, name: "jason", email: "highslater@hotmail.com", created_at: "2017-05-24 17:30:40", updated_at: "2017-05-27 20:16:07", password_digest: "$2a$10$Dx66wgfalTw6j1MfP21LHe7J.1L1Fwp72/sDWi2V3Sp...", remember_digest: "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3...">
->>  User.find_by(id: cookies.signed[:user_id]).email
-=> "highslater@hotmail.com"
->>  User.find_by(id: cookies.signed[:user_id]).remember_digest
-=> "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3d0p7jRmWf6"
->>  User.find_by(id: cookies.signed[:user_id]).remember_token
-=> nil
 >>  remember_digest = User.find_by(id: cookies.signed[:user_id]).remember_digest
 => "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3d0p7jRmWf6"
->>  remember_token = User.find_by(id: cookies.signed[:user_id]).remember_token
-=> nil
->>  cookies.rember_token
-NoMethodError: undefined method `rember_token' for #<ActionDispatch::Cookies::CookieJar:0x007fa20404d820>
-  from /home/highslater/Desktop/10X/ror5_haertl/sample_app/app/helpers/application_helper.rb:15:in `debug_page'
->>  cookies.remember_token
-NoMethodError: undefined method `remember_token' for #<ActionDispatch::Cookies::CookieJar:0x007fa20404d820>
-  from /home/highslater/Desktop/10X/ror5_haertl/sample_app/app/helpers/application_helper.rb:15:in `debug_page'
->>  cookies[:remember_token]
-=> "Op1RtnrwKWHCzbKATwTRKg"
 >>  remember_token = cookies[:remember_token]
 => "Op1RtnrwKWHCzbKATwTRKg"
->>  remember_digest
-=> "$2a$10$.dUTa37jRl0RL3TwLknyneKoCAP5Cy98raQW9FOFJC3d0p7jRmWf6"
 >>  BCrypt::Password.new(remember_digest).is_password?(remember_token)
 => true
 >>   
