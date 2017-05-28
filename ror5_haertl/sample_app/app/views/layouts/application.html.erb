@@ -12,7 +12,7 @@
       <%= yield %>
       <%= render 'shared/footer' %>
     </div>
-    <%= render 'shared/debugging_information' if Rails.env.development?%>
+    <%= render 'shared/debugging_information' if Rails.env.development? && !session[:debug_info]%>
   </body>
 </html>
-<%= debug_page %>
+<% debug_page(session[:debug_me]) %>

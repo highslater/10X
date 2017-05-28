@@ -1,4 +1,8 @@
-<% provide(:title, "Contact") %>
+<% if session[:debug_me] %>
+  <% provide(:title, "DEBUG") %>
+<% else %>
+  <% provide(:title, "Contact") %>
+<% end %>
 <h1>Contact</h1>
 <p>
   Contact the Ruby on Rails Tutorial about the sample app at the

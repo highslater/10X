@@ -9,11 +9,12 @@ module ApplicationHelper
     end
   end
 
-  def debug_page
-    if Rails.env.development?
+  def debug_page(boolean)
+    if Rails.env.development? && boolean
       current_user()
       console()
     end
   end
+
 
 end

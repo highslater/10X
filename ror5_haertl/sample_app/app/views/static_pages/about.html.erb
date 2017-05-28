@@ -1,4 +1,8 @@
-<% provide(:title, "About") %>
+<% if session[:debug_me] %>
+  <% provide(:title, "DEBUG") %>
+<% else %>
+  <% provide(:title, "About") %>
+<% end %>
 <h1>About</h1>
 <p>
   The <a href="http://www.railstutorial.org/"><em>Ruby on Rails

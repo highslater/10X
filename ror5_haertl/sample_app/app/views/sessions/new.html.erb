@@ -1,4 +1,8 @@
-<% provide(:title, "Log in") %>
+<% if session[:debug_me] %>
+  <% provide(:title, "DEBUG") %>
+<% else %>
+  <% provide(:title, "Log in") %>
+<% end %>
 <h1>Log in</h1>
 <div class="row">
   <div class="col-md-6 offset-md-3">

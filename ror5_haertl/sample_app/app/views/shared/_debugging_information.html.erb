@@ -3,5 +3,10 @@
   <hr>
   <div class="pt-2">
     <%= debug(params) if Rails.env.development? %>
+    <%= params.inspect if Rails.env.development? %>
+    <br>
+    <%= params[:controller] if Rails.env.development? %> /
+    <%= params[:id] if Rails.env.development? %> #
+    <%= params[:action] if Rails.env.development? %>
   </div>
 </div>

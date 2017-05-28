@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  post '/debug',  to: 'sessions#debug_me'
+  post '/debug_info',  to: 'sessions#debug_info'
+
   resources :users
 
 end

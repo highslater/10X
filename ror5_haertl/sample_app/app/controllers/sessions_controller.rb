@@ -21,7 +21,17 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     flash[:success] = 'Yuppers, Successfully Logged Out'
     redirect_to root_url
-
   end
+
+  def debug_me
+    session[:debug_me] = !session[:debug_me]
+    redirect_to request.referrer
+  end
+
+  def debug_info
+    session[:debug_info] = !session[:debug_info]
+    redirect_to request.referrer
+  end
+
 
 end
