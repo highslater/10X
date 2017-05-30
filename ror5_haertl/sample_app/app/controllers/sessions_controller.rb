@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       flash[:success] = 'Yuppers, Successfully Logged In'
       redirect_to user
-
     else
       flash.now[:danger] = 'Nope, Invalid email/password combination'
       render 'new'
@@ -29,9 +28,9 @@ class SessionsController < ApplicationController
   end
 
   def debug_info
+    $debugInfoGlobalVariable = !$debugInfoGlobalVariable
     session[:debug_info] = !session[:debug_info]
     redirect_to request.referrer
   end
-
 
 end

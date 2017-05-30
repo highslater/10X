@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  $debugInfoGlobalVariable = false
+
   def full_title(page_title = '')
     base_title = "Ruby on Rails Tutorial Sample App"
     if page_title.empty?
@@ -9,12 +11,17 @@ module ApplicationHelper
     end
   end
 
-  def debug_page(boolean)
-    if Rails.env.development? && boolean
+  def debug_page
+    if Rails.env.development? && session[:debug_me]
       current_user()
       console()
     end
   end
 
+  def debug_info
+    if Rails.env.development? && session[:debug_info] && !session[:debug_me]
+      render 'shared/debugging_information'
+    end
+  end
 
 end

@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
+
+
   def home
+    @instance_variable = "Instance Variable"
   end
 
   def help
@@ -10,4 +13,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
 end

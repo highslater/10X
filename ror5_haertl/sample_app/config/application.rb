@@ -14,5 +14,14 @@ module SampleApp
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+
+
+    # Now you have to tell Web Console to actually use it.
+    # config.web_console.automount = true
+    # config.web_console.style.colors :monokai
+    # config.web_console.style.font = 'monospace'
+
+
   end
 end

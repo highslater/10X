@@ -1,12 +1,53 @@
 <div class="container  mt-5 p-3  center bg-faded text-black">
-  <h3>Debugging Information</h3>
+  <h3>Debug Info</h3>
   <hr>
   <div class="pt-2">
-    <%= debug(params) if Rails.env.development? %>
-    <%= params.inspect if Rails.env.development? %>
-    <br>
+    <h5 class="text-primary">Params</h5>
     <%= params[:controller] if Rails.env.development? %> /
     <%= params[:id] if Rails.env.development? %> #
     <%= params[:action] if Rails.env.development? %>
+    <hr>
+    <h5 class="text-primary">User Info</h5>
+    <% if @user %>
+      <%= @user.id %><br>
+      <%= @user.name %><br>
+      <%= @user.email %><br>
+      <%= @user.created_at %><br>
+      <%= @user.updated_at %><br>
+      <%= @user.password_digest %><br>
+      <% if @user.remember_digest %>
+        <%= @user.remember_digest %><br>
+      <% end %>
+      <hr>
+    <% end %>
+    <h5 class="text-primary">Params Inspect</h5>
+    <%= params.inspect if Rails.env.development? %>
+    <hr>
+    <h5 class="text-primary">Session:</h5>
+    <!--   -->
+    <% if $session != nil %>
+      $session[:remember_me] => 
+      <%= $session[:remember_me] %><br>
+      $session[:email] => 
+      <%= $session[:email] %><br>
+      <span class="text-danger">
+        $session[:password] => 
+        <%= $session[:password] %>
+      </span><br>
+    <% end %>
+    <!--   -->
+    session[:user_id] => 
+    <%= session[:user_id] %><br>
+    session[:debug_me] =>
+    <%= session[:debug_me] %><br>
+    session[:debug_info] => 
+    <%= session[:debug_info] %><hr>
+    <h5 class="text-primary">Cookies:</h5>
+    cookies[:_sample_app_session] => 
+    <%= cookies[:_sample_app_session] %><br>
+    cookies[:remember_token] => 
+    <%= cookies[:remember_token] %><br>
+    cookies[:user_id] => 
+    <%= cookies[:user_id] %><br>
   </div>
 </div>

@@ -85,3 +85,33 @@ password_digest: "$2a$10$S88PPuUtHqinfaSP6Ipv5.yLVQmB1mjA1x6uzQMwENTBiOiue4yAm"
 
 
 
+```
+>>  @user
+=> #<User id: 2, name: "jason", email: "highslater@hotmail.com", created_at: "2017-05-24 17:30:40", updated_at: "2017-05-30 20:55:22", password_digest: "$2a$10$Dx66wgfalTw6j1MfP21LHe7J.1L1Fwp72/sDWi2V3Sp...", remember_digest: nil>
+>>  @user.remember_token = User.new_token
+=> "6gpuyxUIrEyH7UR65IZnPw"
+>>  @user[:remember_digest] = User.digest(@user.remember_token)
+=> "$2a$10$fs3RlAYOoEDVKz191JnBSOy5Jldtn8FiLWpJL/vjs5cQo4SllnZ4K"
+>>  @user
+=> #<User id: 2, name: "jason", email: "highslater@hotmail.com", created_at: "2017-05-24 17:30:40", updated_at: "2017-05-30 20:55:22", password_digest: "$2a$10$Dx66wgfalTw6j1MfP21LHe7J.1L1Fwp72/sDWi2V3Sp...", remember_digest: "$2a$10$fs3RlAYOoEDVKz191JnBSOy5Jldtn8FiLWpJL/vjs5c...">
+>>  BCrypt::Password.new(@user[:remember_digest]).is_password?(@user.remember_token)
+=> true
+>>  @user[:remember_digest].nil?
+=> false
+>>  @user.authenticated?(@user.remember_token)
+=> true 
+>>  remember(@user)
+=> "AtJgwvQjPXLBuR87sJL02Q"
+>>  cookies[:user_id]
+=> "Mg==--1f6aa27a3cab7b0c47041c46b1d62c0e9e34ac1b"
+>>  cookies[:remember_token]
+=> "AtJgwvQjPXLBuR87sJL02Q"
+>>  forget(@user)
+=> "AtJgwvQjPXLBuR87sJL02Q"
+>>  cookies[:user_id]
+=> nil
+>>  cookies[:remember_token]
+=> nil
+>>    
+
+```
