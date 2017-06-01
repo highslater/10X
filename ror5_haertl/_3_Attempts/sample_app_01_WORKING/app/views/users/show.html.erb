@@ -1,0 +1,18 @@
+<% if session[:debug_me] %>
+  <% provide(:title, "DEBUG") %>
+<% else %>
+  <% provide :title, @user.name %>
+<% end %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= gravatar_for @user %>
+      <h3><%= @user.name %></h3>
+      <p><%= @user.email %></p>
+    </section>
+    <hr>
+    <small>member since: <%= @user.created_at %></small>
+    <br>
+    <small>last activity: <%= @user.updated_at %></small>
+  </aside>
+</div>

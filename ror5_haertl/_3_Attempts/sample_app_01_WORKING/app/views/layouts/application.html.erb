@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= render 'shared/rails_default' %>
+    <%= render 'shared/shim' %>
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+    <div class="container main_content">
+      <%= render 'shared/flash' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
+    <%= debug_info %>
+    <% debug_page %>
+  </body>
+</html>

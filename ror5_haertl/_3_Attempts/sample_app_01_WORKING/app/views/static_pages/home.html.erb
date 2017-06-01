@@ -1,0 +1,16 @@
+<% if session[:debug_me] %>
+  <% provide(:title, "DEBUG") %>
+<% else %>
+  <% provide(:title, "Home") %>
+<% end %>
+<div class="center jumbotron">
+  <h1 class="display-3">Welcome to the Sample App</h1>
+  <hr class="my-4">
+  <p class="lead">
+    This is the home page for the
+    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+    sample application.
+  </p>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary mt-5" %>
+</div>
+<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
